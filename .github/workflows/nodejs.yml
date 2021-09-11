@@ -66,3 +66,12 @@ jobs:
         curl -Os https://uploader.codecov.io/latest/linux/codecov
         chmod +x codecov
         ./codecov
+    - name: Generate Docs
+      run: yarn docs
+    - name: Publish to Github Pages
+      if: ${{ github.event_name == 'push' && matrix.node-version == '14.x' }}
+      uses: JamesIves/github-pages-deploy-action@4.1.5
+      with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: docs # The folder the action should deploy.
+      

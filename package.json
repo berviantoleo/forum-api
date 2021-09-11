@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node src/app.js",
     "start:dev": "nodemon src/app.js",
+    "docs": "jsdoc --readme README.md -c jsdoc.json -d docs -r src",
     "lint": "eslint .",
     "test": "jest --setupFiles dotenv/config -i",
     "test:ci": "jest",
@@ -36,6 +37,7 @@
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "^2.24.2",
     "jest": "^27.0.6",
+    "jsdoc": "^3.6.7",
     "node-pg-migrate": "^5.10.0",
     "nodemon": "^2.0.12"
   }
