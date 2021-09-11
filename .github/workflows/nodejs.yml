@@ -52,8 +52,8 @@ jobs:
     - name: Test
       run: yarn test:ci --coverage
       env:
-        PGHOST_TEST=localhost
-        PGUSER_TEST=postgres
-        PGDATABASE_TEST=forumapi_test
-        PGPASSWORD_TEST=devsecretpassword
-        PGPORT_TEST=5432
+        PGHOST_TEST: localhost
+        PGUSER_TEST: postgres
+        PGDATABASE_TEST: forumapi_test
+        PGPASSWORD_TEST: devsecretpassword
+        PGPORT_TEST: 5432
