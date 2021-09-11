@@ -2,7 +2,7 @@
 
 [![Node CI](https://github.com/berviantoleo/forum-api/actions/workflows/nodejs.yml/badge.svg)](https://github.com/berviantoleo/forum-api/actions/workflows/nodejs.yml)
 
-[![codecov](https://codecov.io/gh/berviantoleo/forum-api/branch/main/graph/badge.svg?token=p248OrJuYk)](https://codecov.io/gh/berviantoleo/forum-api)
+[![codecov](https://codecov.io/gh/berviantoleo/forum-api/branch/master/graph/badge.svg?token=p248OrJuYk)](https://codecov.io/gh/berviantoleo/forum-api)
 
 ## Run
 
