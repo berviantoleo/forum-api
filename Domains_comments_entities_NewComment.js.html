@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Applications/security/PasswordHash.js</title>
+    <title>JSDoc: Source: Domains/comments/entities/NewComment.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Applications/security/PasswordHash.js</h1>
+    <h1 class="page-title">Source: Domains/comments/entities/NewComment.js</h1>
 
     
 
@@ -27,28 +27,43 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * PasswordHas
+ * NewComment class
  */
-class PasswordHash {
+class NewComment {
   /**
-   * Hashing
-   * @param {string} password Password
-   */
-  async hash(password) {
-    throw new Error('PASSWORD_HASH.METHOD_NOT_IMPLEMENTED');
+     * NewComment constructor
+     * @param {*} payload Hapi Request Payload
+     */
+  constructor(payload) {
+    this._verifyPayload(payload);
+
+    const {content, threadId, userId} = payload;
+
+    this.content = content;
+    this.threadId = threadId;
+    this.userId = userId;
   }
 
   /**
-   * Compare Password
-   * @param {string} plain Plain Password
-   * @param {string} encrypted Encrypted Password
-   */
-  async comparePassword(plain, encrypted) {
-    throw new Error('PASSWORD_HASH.METHOD_NOT_IMPLEMENTED');
+     * Verify Payload
+     * @param {*} param0 Hapi Request Payload
+     */
+  _verifyPayload({content, threadId, userId}) {
+    if (!content || !threadId || !userId) {
+      throw new Error('NEW_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY');
+    }
+
+    if (
+      typeof content !== 'string' ||
+        typeof threadId !== 'string' ||
+        typeof userId !== 'string'
+    ) {
+      throw new Error('NEW_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION');
+    }
   }
 }
 
-module.exports = PasswordHash;
+module.exports = NewComment;
 </code></pre>
         </article>
     </section>

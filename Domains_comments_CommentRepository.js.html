@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Applications/security/PasswordHash.js</title>
+    <title>JSDoc: Source: Domains/comments/CommentRepository.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Applications/security/PasswordHash.js</h1>
+    <h1 class="page-title">Source: Domains/comments/CommentRepository.js</h1>
 
     
 
@@ -27,28 +27,27 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * PasswordHas
+ * ThreadRepository Class
  */
-class PasswordHash {
+class CommentRepository {
   /**
-   * Hashing
-   * @param {string} password Password
+   * Add New Comment
+   * @param {*} newComment NewComment Object
    */
-  async hash(password) {
-    throw new Error('PASSWORD_HASH.METHOD_NOT_IMPLEMENTED');
+  async addComment(newComment) {
+    throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
-   * Compare Password
-   * @param {string} plain Plain Password
-   * @param {string} encrypted Encrypted Password
+   * Delete Comment by Id
+   * @param {string} id Id
    */
-  async comparePassword(plain, encrypted) {
-    throw new Error('PASSWORD_HASH.METHOD_NOT_IMPLEMENTED');
+  async deleteComment(id) {
+    throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 }
 
-module.exports = PasswordHash;
+module.exports = CommentRepository;
 </code></pre>
         </article>
     </section>
