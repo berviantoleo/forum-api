@@ -1,0 +1,52 @@
+
+name: Node CI
+on:
+  push:
+    # Publish `master` as Docker `latest` image.
+    branches:
+      - master
+    # Publish `v1.2.3` tags as releases.
+    tags:
+      - v*
+  # Run tests for any PRs.
+  pull_request:
+env:
+  IMAGE_NAME: my-personal-web
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    # Service containers to run with `runner-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres:13-alpine
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: devsecretpassword
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Yarn Install
+      run: yarn --frozen-lockfile
+    - name: Lint
+      run: yarn lint
+    - name: Migrate
+      run: yarn migrate:test up
+    - name: Test
+      run: yarn test --coverage
