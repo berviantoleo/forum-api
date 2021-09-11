@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Interfaces/http/api/authentications/handler.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Interfaces/http/api/authentications/handler.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const LoginUserUseCase = require('../../../../Applications/use_case/LoginUserUseCase');
+const RefreshAuthenticationUseCase = require('../../../../Applications/use_case/RefreshAuthenticationUseCase');
+const LogoutUserUseCase = require('../../../../Applications/use_case/LogoutUserUseCase');
+
+/**
+ * Authentication Handler
+ */
+class AuthenticationsHandler {
+  /**
+   * AuthHandler Constructor
+   * @param {*} container container
+   */
+  constructor(container) {
+    this._container = container;
+
+    this.postAuthenticationHandler = this.postAuthenticationHandler.bind(this);
+    this.putAuthenticationHandler = this.putAuthenticationHandler.bind(this);
+    this.deleteAuthenticationHandler = this.deleteAuthenticationHandler.bind(this);
+  }
+
+  /**
+   * Create Auth Data
+   * @param {*} request Hapi Request
+   * @param {*} h Hapi Response Toolkit
+   * @return {*} Hapi Response
+   */
+  async postAuthenticationHandler(request, h) {
+    const loginUserUseCase = this._container.getInstance(LoginUserUseCase.name);
+    const {accessToken, refreshToken} = await loginUserUseCase.execute(request.payload);
+    const response = h.response({
+      status: 'success',
+      data: {
+        accessToken,
+        refreshToken,
+      },
+    });
+    response.code(201);
+    return response;
+  }
+
+  /**
+   * Update Auth Data
+   * @param {*} request Hapi Request
+   * @param {*} h Hapi Response Toolkit
+   * @return {*} Hapi Response
+   */
+  async putAuthenticationHandler(request) {
+    const refreshAuthenticationUseCase = this._container
+        .getInstance(RefreshAuthenticationUseCase.name);
+    const accessToken = await refreshAuthenticationUseCase.execute(request.payload);
+
+    return {
+      status: 'success',
+      data: {
+        accessToken,
+      },
+    };
+  }
+
+  /**
+   * Delete Auth Data
+   * @param {*} request Hapi Request
+   * @param {*} h Hapi Response Toolkit
+   * @return {*} Hapi Response
+   */
+  async deleteAuthenticationHandler(request) {
+    const logoutUserUseCase = this._container.getInstance(LogoutUserUseCase.name);
+    await logoutUserUseCase.execute(request.payload);
+    return {
+      status: 'success',
+    };
+  }
+}
+
+module.exports = AuthenticationsHandler;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AddUserUseCase.html">AddUserUseCase</a></li><li><a href="AuthenticationError.html">AuthenticationError</a></li><li><a href="AuthenticationRepository.html">AuthenticationRepository</a></li><li><a href="AuthenticationRepositoryPostgres.html">AuthenticationRepositoryPostgres</a></li><li><a href="AuthenticationsHandler.html">AuthenticationsHandler</a></li><li><a href="AuthenticationTokenManager.html">AuthenticationTokenManager</a></li><li><a href="AuthorizationError.html">AuthorizationError</a></li><li><a href="BcryptPasswordHash.html">BcryptPasswordHash</a></li><li><a href="ClientError.html">ClientError</a></li><li><a href="CreatedThread.html">CreatedThread</a></li><li><a href="DeleteAuthenticationUseCase.html">DeleteAuthenticationUseCase</a></li><li><a href="InvariantError.html">InvariantError</a></li><li><a href="JwtTokenManager.html">JwtTokenManager</a></li><li><a href="LoginUserUseCase.html">LoginUserUseCase</a></li><li><a href="LogoutUserUseCase.html">LogoutUserUseCase</a></li><li><a href="NewAuth.html">NewAuth</a></li><li><a href="NewThread.html">NewThread</a></li><li><a href="NotFoundError.html">NotFoundError</a></li><li><a href="PasswordHash.html">PasswordHash</a></li><li><a href="RefreshAuthenticationUseCase.html">RefreshAuthenticationUseCase</a></li><li><a href="RegisteredUser.html">RegisteredUser</a></li><li><a href="RegisterUser.html">RegisterUser</a></li><li><a href="ThreadRepository.html">ThreadRepository</a></li><li><a href="ThreadRepositoryPostgres.html">ThreadRepositoryPostgres</a></li><li><a href="UserLogin.html">UserLogin</a></li><li><a href="UserRepository.html">UserRepository</a></li><li><a href="UserRepositoryPostgres.html">UserRepositoryPostgres</a></li><li><a href="UsersHandler.html">UsersHandler</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Sep 11 2021 15:30:23 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
