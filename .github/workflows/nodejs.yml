@@ -50,4 +50,10 @@ jobs:
     - name: Migrate
       run: yarn migrate:test up
     - name: Test
-      run: yarn test --coverage
+      run: yarn test:ci --coverage
+      env:
+        PGHOST_TEST=localhost
+        PGUSER_TEST=postgres
+        PGDATABASE_TEST=forumapi_test
+        PGPASSWORD_TEST=devsecretpassword
+        PGPORT_TEST=5432
