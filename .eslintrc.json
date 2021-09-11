@@ -13,5 +13,8 @@
   },
   "rules": {
     "max-len": [2, {"code": 125, "tabWidth": 2}]
-  }
+  },
+  "ignorePatterns": [
+    "docs/**/*.js"
+  ]
 }

@@ -57,8 +57,8 @@ describe('a NewThread entities', () => {
     const newThread = new NewThread(payload);
 
     // Assert
-    expect(newThread.id).toEqual(payload.id);
-    expect(newThread.username).toEqual(payload.username);
-    expect(newThread.fullname).toEqual(payload.fullname);
+    expect(newThread.title).toEqual(payload.title);
+    expect(newThread.body).toEqual(payload.body);
+    expect(newThread.userId).toEqual(payload.userId);
   });
 });
