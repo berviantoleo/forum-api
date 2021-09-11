@@ -18,6 +18,7 @@ describe('a NewThread entities', () => {
     const payload = {
       title: 'new thread',
       body: {},
+      userId: 'randomly',
     };
 
     // Action and Assert
@@ -35,6 +36,7 @@ describe('a NewThread entities', () => {
     const payload = {
       title: myTitle,
       body: 'Good body',
+      userId: 'random-user',
     };
 
     // Action and Assert
@@ -48,6 +50,7 @@ describe('a NewThread entities', () => {
     const payload = {
       title: 'New Thread',
       body: 'Hello, this is new body for meeeee........................',
+      userId: 'randomly',
     };
 
     // Action

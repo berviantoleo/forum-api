@@ -1,14 +1,10 @@
 exports.up = (pgm) => {
-  pgm.createTable('threads', {
+  pgm.createTable('comments', {
     id: {
       type: 'VARCHAR(50)',
       primaryKey: true,
     },
-    title: {
-      type: 'VARCHAR(512)',
-      notNull: true,
-    },
-    body: {
+    content: {
       type: 'TEXT',
       notNull: true,
     },
@@ -17,15 +13,31 @@ exports.up = (pgm) => {
       notNull: true,
       default: pgm.func('current_timestamp'),
     },
+    is_delete: {
+      type: 'BOOLEAN',
+      notNull: true,
+      default: false,
+    },
     owner_id: {
       type: 'VARCHAR(50)',
       notNull: true,
       references: 'users',
       onDelete: 'cascade',
     },
+    thread_id: {
+      type: 'VARCHAR(50)',
+      notNull: true,
+      references: 'threads',
+      onDelete: 'cascade',
+    },
+    reply_to: {
+      type: 'VARCHAR(50)',
+      notNull: false,
+      references: 'comments',
+    },
   });
 };
 
 exports.down = (pgm) => {
-  pgm.dropTable('threads');
+  pgm.dropTable('comments');
 };
