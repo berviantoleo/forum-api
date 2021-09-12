@@ -74,19 +74,23 @@ describe('/threads endpoint', () => {
               toEqual('harus mengirimkan title dan body');
         });
 
-    it('should response 400 if login payload wrong data type', async () => {
+    it('should response 400 if thread payload wrong data type', async () => {
       // Arrange
       const requestPayload = {
-        username: 123,
-        password: 'secret',
+        title: 9999999999,
+        body: 'I don\'t know what should I write here. Please tell me.',
       };
+      const accessToken = await ServerTestHelper.getAccessToken();
       const server = await createServer(container);
 
       // Action
       const response = await server.inject({
         method: 'POST',
-        url: '/authentications',
+        url: '/threads',
         payload: requestPayload,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       });
 
       // Assert
@@ -94,7 +98,30 @@ describe('/threads endpoint', () => {
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).
-          toEqual('username dan password harus string');
+          toEqual('title dan body harus string');
+    });
+
+    it('should response 401 if without token', async () => {
+      // Arrange
+      const requestPayload = {
+        title: 'Any title please',
+        body: 'I don\'t know what should I write here. Please tell me.',
+      };
+      const server = await createServer(container);
+
+      // Action
+      const response = await server.inject({
+        method: 'POST',
+        url: '/threads',
+        payload: requestPayload,
+      });
+
+      // Assert
+      const responseJson = JSON.parse(response.payload);
+      expect(response.statusCode).toEqual(401);
+      expect(responseJson.statusCode).toEqual(401);
+      expect(responseJson.error).toEqual('Unauthorized');
+      expect(responseJson.message).toEqual('Missing authentication');
     });
   });
 });
