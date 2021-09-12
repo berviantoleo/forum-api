@@ -71,6 +71,25 @@ class ThreadRepositoryPostgres extends ThreadRepository {
     thread.comments = resultComments.rows;
     return thread;
   }
+
+  /**
+   * Verify thread exists
+   * @param {string} threadId ThreadId
+   */
+  async verifyThreadExist(threadId) {
+    const query = {
+      text: `SELECT id 
+                FROM threads
+                WHERE id = $1`,
+      values: [threadId],
+    };
+
+    const result = await this._pool.query(query);
+
+    if (!result.rowCount) {
+      throw new NotFoundError('thread tidak ditemukan');
+    }
+  }
 }
 
 module.exports = ThreadRepositoryPostgres;
