@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: LogoutUserUseCase</title>
+    <title>JSDoc: Class: ThreadsHandler</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: LogoutUserUseCase</h1>
+    <h1 class="page-title">Class: ThreadsHandler</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>LogoutUserUseCase<span class="signature">(param0)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>ThreadsHandler<span class="signature">(container)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">LogoutUserUseCase</div>
+            <div class="class-description">ThreadsHandler Class</div>
         
     
 </header>
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="LogoutUserUseCase"><span class="type-signature"></span>new LogoutUserUseCase<span class="signature">(param0)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ThreadsHandler"><span class="type-signature"></span>new ThreadsHandler<span class="signature">(container)</span><span class="type-signature"></span></h4>
     
 
     
@@ -53,7 +53,7 @@
 
 
 <div class="description">
-    Constructor
+    ThreadsHandler Constructor
 </div>
 
 
@@ -89,7 +89,7 @@
 
         <tr>
             
-                <td class="name"><code>param0</code></td>
+                <td class="name"><code>container</code></td>
             
 
             <td class="type">
@@ -105,7 +105,7 @@
 
             
 
-            <td class="description last">DI</td>
+            <td class="description last">container</td>
         </tr>
 
     
@@ -146,7 +146,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Applications_use_case_LogoutUserUseCase.js.html">Applications/use_case/LogoutUserUseCase.js</a>, <a href="Applications_use_case_LogoutUserUseCase.js.html#line4">line 4</a>
+        <a href="Interfaces_http_api_threads_handler.js.html">Interfaces/http/api/threads/handler.js</a>, <a href="Interfaces_http_api_threads_handler.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -202,7 +202,7 @@
     
 
     
-    <h4 class="name" id="_validatePayload"><span class="type-signature"></span>_validatePayload<span class="signature">(payload)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="postThreadHandler"><span class="type-signature">(async) </span>postThreadHandler<span class="signature">(request, h)</span><span class="type-signature"> &rarr; {*}</span></h4>
     
 
     
@@ -210,7 +210,7 @@
 
 
 <div class="description">
-    Validate Payload
+    Create Thread Handler
 </div>
 
 
@@ -246,7 +246,7 @@
 
         <tr>
             
-                <td class="name"><code>payload</code></td>
+                <td class="name"><code>request</code></td>
             
 
             <td class="type">
@@ -262,7 +262,30 @@
 
             
 
-            <td class="description last">Payload</td>
+            <td class="description last">Hapi Request</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>h</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Hapi Response Toolkit</td>
         </tr>
 
     
@@ -303,7 +326,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Applications_use_case_LogoutUserUseCase.js.html">Applications/use_case/LogoutUserUseCase.js</a>, <a href="Applications_use_case_LogoutUserUseCase.js.html#line30">line 30</a>
+        <a href="Interfaces_http_api_threads_handler.js.html">Interfaces/http/api/threads/handler.js</a>, <a href="Interfaces_http_api_threads_handler.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -328,6 +351,28 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Hapi Response
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">*</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -339,7 +384,7 @@
     
 
     
-    <h4 class="name" id="_validatePayload"><span class="type-signature"></span>_validatePayload<span class="signature">(payload)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="postThreadHandler"><span class="type-signature">(async) </span>postThreadHandler<span class="signature">(request, h)</span><span class="type-signature"> &rarr; {*}</span></h4>
     
 
     
@@ -347,7 +392,7 @@
 
 
 <div class="description">
-    Validate Payload
+    Create Thread Handler
 </div>
 
 
@@ -383,7 +428,7 @@
 
         <tr>
             
-                <td class="name"><code>payload</code></td>
+                <td class="name"><code>request</code></td>
             
 
             <td class="type">
@@ -399,7 +444,30 @@
 
             
 
-            <td class="description last">Payload</td>
+            <td class="description last">Hapi Request</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>h</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Hapi Response Toolkit</td>
         </tr>
 
     
@@ -440,7 +508,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Applications_use_case_LogoutUserUseCase.js.html">Applications/use_case/LogoutUserUseCase.js</a>, <a href="Applications_use_case_LogoutUserUseCase.js.html#line30">line 30</a>
+        <a href="Interfaces_http_api_threads_handler.js.html">Interfaces/http/api/threads/handler.js</a>, <a href="Interfaces_http_api_threads_handler.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -465,280 +533,28 @@
 
 
 
-
-
-
-
+<h5>Returns:</h5>
 
         
-            
-
-    
-
-    
-    <h4 class="name" id="execute"><span class="type-signature">(async) </span>execute<span class="signature">(useCasePayload)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Execute
+<div class="param-desc">
+    Hapi Response
 </div>
 
 
 
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
         
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>useCasePayload</code></td>
-            
-
-            <td class="type">
-            
-                
 <span class="param-type">*</span>
 
 
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">UseCase</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Applications_use_case_LogoutUserUseCase.js.html">Applications/use_case/LogoutUserUseCase.js</a>, <a href="Applications_use_case_LogoutUserUseCase.js.html#line19">line 19</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
+    </dd>
 </dl>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
     
-
-    
-    <h4 class="name" id="execute"><span class="type-signature">(async) </span>execute<span class="signature">(useCasePayload)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Execute
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>useCasePayload</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">UseCase</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Applications_use_case_LogoutUserUseCase.js.html">Applications/use_case/LogoutUserUseCase.js</a>, <a href="Applications_use_case_LogoutUserUseCase.js.html#line19">line 19</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -764,9 +580,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>LogoutUserUseCase<span class="signature">(param0)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>ThreadsHandler<span class="signature">(container)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">LogoutUserUseCase</div>
+            <div class="class-description">ThreadsHandler Class</div>
         
     
 </header>
@@ -781,7 +597,7 @@
     
 
     
-    <h4 class="name" id="LogoutUserUseCase"><span class="type-signature"></span>new LogoutUserUseCase<span class="signature">(param0)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ThreadsHandler"><span class="type-signature"></span>new ThreadsHandler<span class="signature">(container)</span><span class="type-signature"></span></h4>
     
 
     
@@ -789,7 +605,7 @@
 
 
 <div class="description">
-    Constructor
+    ThreadsHandler Constructor
 </div>
 
 
@@ -825,7 +641,7 @@
 
         <tr>
             
-                <td class="name"><code>param0</code></td>
+                <td class="name"><code>container</code></td>
             
 
             <td class="type">
@@ -841,7 +657,7 @@
 
             
 
-            <td class="description last">DI</td>
+            <td class="description last">container</td>
         </tr>
 
     
@@ -882,7 +698,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Applications_use_case_LogoutUserUseCase.js.html">Applications/use_case/LogoutUserUseCase.js</a>, <a href="Applications_use_case_LogoutUserUseCase.js.html#line4">line 4</a>
+        <a href="Interfaces_http_api_threads_handler.js.html">Interfaces/http/api/threads/handler.js</a>, <a href="Interfaces_http_api_threads_handler.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -938,7 +754,7 @@
     
 
     
-    <h4 class="name" id="_validatePayload"><span class="type-signature"></span>_validatePayload<span class="signature">(payload)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="postThreadHandler"><span class="type-signature">(async) </span>postThreadHandler<span class="signature">(request, h)</span><span class="type-signature"> &rarr; {*}</span></h4>
     
 
     
@@ -946,7 +762,7 @@
 
 
 <div class="description">
-    Validate Payload
+    Create Thread Handler
 </div>
 
 
@@ -982,7 +798,7 @@
 
         <tr>
             
-                <td class="name"><code>payload</code></td>
+                <td class="name"><code>request</code></td>
             
 
             <td class="type">
@@ -998,7 +814,30 @@
 
             
 
-            <td class="description last">Payload</td>
+            <td class="description last">Hapi Request</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>h</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Hapi Response Toolkit</td>
         </tr>
 
     
@@ -1039,7 +878,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Applications_use_case_LogoutUserUseCase.js.html">Applications/use_case/LogoutUserUseCase.js</a>, <a href="Applications_use_case_LogoutUserUseCase.js.html#line30">line 30</a>
+        <a href="Interfaces_http_api_threads_handler.js.html">Interfaces/http/api/threads/handler.js</a>, <a href="Interfaces_http_api_threads_handler.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -1064,6 +903,28 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Hapi Response
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">*</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -1075,7 +936,7 @@
     
 
     
-    <h4 class="name" id="_validatePayload"><span class="type-signature"></span>_validatePayload<span class="signature">(payload)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="postThreadHandler"><span class="type-signature">(async) </span>postThreadHandler<span class="signature">(request, h)</span><span class="type-signature"> &rarr; {*}</span></h4>
     
 
     
@@ -1083,7 +944,7 @@
 
 
 <div class="description">
-    Validate Payload
+    Create Thread Handler
 </div>
 
 
@@ -1119,7 +980,7 @@
 
         <tr>
             
-                <td class="name"><code>payload</code></td>
+                <td class="name"><code>request</code></td>
             
 
             <td class="type">
@@ -1135,7 +996,30 @@
 
             
 
-            <td class="description last">Payload</td>
+            <td class="description last">Hapi Request</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>h</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Hapi Response Toolkit</td>
         </tr>
 
     
@@ -1176,7 +1060,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Applications_use_case_LogoutUserUseCase.js.html">Applications/use_case/LogoutUserUseCase.js</a>, <a href="Applications_use_case_LogoutUserUseCase.js.html#line30">line 30</a>
+        <a href="Interfaces_http_api_threads_handler.js.html">Interfaces/http/api/threads/handler.js</a>, <a href="Interfaces_http_api_threads_handler.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -1201,280 +1085,28 @@
 
 
 
-
-
-
-
+<h5>Returns:</h5>
 
         
-            
-
-    
-
-    
-    <h4 class="name" id="execute"><span class="type-signature">(async) </span>execute<span class="signature">(useCasePayload)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Execute
+<div class="param-desc">
+    Hapi Response
 </div>
 
 
 
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
         
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>useCasePayload</code></td>
-            
-
-            <td class="type">
-            
-                
 <span class="param-type">*</span>
 
 
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">UseCase</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Applications_use_case_LogoutUserUseCase.js.html">Applications/use_case/LogoutUserUseCase.js</a>, <a href="Applications_use_case_LogoutUserUseCase.js.html#line19">line 19</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
+    </dd>
 </dl>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
     
-
-    
-    <h4 class="name" id="execute"><span class="type-signature">(async) </span>execute<span class="signature">(useCasePayload)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Execute
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>useCasePayload</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">UseCase</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Applications_use_case_LogoutUserUseCase.js.html">Applications/use_case/LogoutUserUseCase.js</a>, <a href="Applications_use_case_LogoutUserUseCase.js.html#line19">line 19</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

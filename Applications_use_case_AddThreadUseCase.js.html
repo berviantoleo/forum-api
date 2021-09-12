@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Domains/comments/CommentRepository.js</title>
+    <title>JSDoc: Source: Applications/use_case/AddThreadUseCase.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Domains/comments/CommentRepository.js</h1>
+    <h1 class="page-title">Source: Applications/use_case/AddThreadUseCase.js</h1>
 
     
 
@@ -26,28 +26,32 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * ThreadRepository Class
+            <pre class="prettyprint source linenums"><code>const NewThread = require('../../Domains/threads/entities/NewThread');
+
+/**
+ * AddUserUseCase
  */
-class CommentRepository {
+class AddThreadUseCase {
   /**
-   * Add New Comment
-   * @param {*} newComment NewComment Object
+   * Constructor
+   * @param {*} param0 DI
    */
-  async addComment(newComment) {
-    throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  constructor({threadRepository}) {
+    this._threadRepository = threadRepository;
   }
 
   /**
-   * Delete Comment by Id
-   * @param {string} id Id
+   * Execute
+   * @param {*} useCasePayload UseCase
+   * @return {*} User
    */
-  async deleteComment(id) {
-    throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  async execute(useCasePayload) {
+    const newThread = new NewThread(useCasePayload);
+    return this._threadRepository.addThread(newThread);
   }
 }
 
-module.exports = CommentRepository;
+module.exports = AddThreadUseCase;
 </code></pre>
         </article>
     </section>

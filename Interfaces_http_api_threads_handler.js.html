@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Domains/comments/CommentRepository.js</title>
+    <title>JSDoc: Source: Interfaces/http/api/threads/handler.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Domains/comments/CommentRepository.js</h1>
+    <h1 class="page-title">Source: Interfaces/http/api/threads/handler.js</h1>
 
     
 
@@ -26,28 +26,46 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * ThreadRepository Class
+            <pre class="prettyprint source linenums"><code>const AddThreadUseCase = require('../../../../Applications/use_case/AddThreadUseCase');
+
+/**
+ * ThreadsHandler Class
  */
-class CommentRepository {
+class ThreadsHandler {
   /**
-   * Add New Comment
-   * @param {*} newComment NewComment Object
+   * ThreadsHandler Constructor
+   * @param {*} container container
    */
-  async addComment(newComment) {
-    throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  constructor(container) {
+    this._container = container;
+
+    this.postThreadHandler = this.postThreadHandler.bind(this);
   }
 
   /**
-   * Delete Comment by Id
-   * @param {string} id Id
+   * Create Thread Handler
+   * @param {*} request Hapi Request
+   * @param {*} h Hapi Response Toolkit
+   * @return {*} Hapi Response
    */
-  async deleteComment(id) {
-    throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  async postThreadHandler(request, h) {
+    const {id: userId} = request.auth.credentials;
+    const addThreadUseCase = this._container.getInstance(AddThreadUseCase.name);
+    const newPayload = Object.assign(request.payload, {userId});
+    const addedThread = await addThreadUseCase.execute(newPayload);
+
+    const response = h.response({
+      status: 'success',
+      data: {
+        addedThread,
+      },
+    });
+    response.code(201);
+    return response;
   }
 }
 
-module.exports = CommentRepository;
+module.exports = ThreadsHandler;
 </code></pre>
         </article>
     </section>
