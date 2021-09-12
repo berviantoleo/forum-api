@@ -44,76 +44,26 @@ describe('/threads endpoint', () => {
       expect(responseJson.status).toEqual('success');
       expect(responseJson.data.addedThread).toBeDefined();
       expect(responseJson.data.addedThread.title).toEqual(requestPayload.title);
+      expect(responseJson.data.addedThread.id).toContain('thread-');
     });
 
-    it('should response 400 if username not found', async () => {
-      // Arrange
-      const requestPayload = {
-        username: 'dicoding',
-        password: 'secret',
-      };
-      const server = await createServer(container);
-
-      // Action
-      const response = await server.inject({
-        method: 'POST',
-        url: '/authentications',
-        payload: requestPayload,
-      });
-
-      // Assert
-      const responseJson = JSON.parse(response.payload);
-      expect(response.statusCode).toEqual(400);
-      expect(responseJson.status).toEqual('fail');
-      expect(responseJson.message).toEqual('username tidak ditemukan');
-    });
-
-    it('should response 401 if password wrong', async () => {
-      // Arrange
-      const requestPayload = {
-        username: 'dicoding',
-        password: 'wrong_password',
-      };
-      const server = await createServer(container);
-      // Add user
-      await server.inject({
-        method: 'POST',
-        url: '/users',
-        payload: {
-          username: 'dicoding',
-          password: 'secret',
-          fullname: 'Dicoding Indonesia',
-        },
-      });
-
-      // Action
-      const response = await server.inject({
-        method: 'POST',
-        url: '/authentications',
-        payload: requestPayload,
-      });
-
-      // Assert
-      const responseJson = JSON.parse(response.payload);
-      expect(response.statusCode).toEqual(401);
-      expect(responseJson.status).toEqual('fail');
-      expect(responseJson.message).
-          toEqual('kredensial yang Anda masukkan salah');
-    });
-
-    it('should response 400 if login payload not contain needed property',
+    it('should response 400 if thread payload not contain needed property',
         async () => {
           // Arrange
           const requestPayload = {
-            username: 'dicoding',
+            title: 'Help Me to Find Good Title',
           };
+          const accessToken = await ServerTestHelper.getAccessToken();
           const server = await createServer(container);
 
           // Action
           const response = await server.inject({
             method: 'POST',
-            url: '/authentications',
+            url: '/threads',
             payload: requestPayload,
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
           });
 
           // Assert
@@ -121,7 +71,7 @@ describe('/threads endpoint', () => {
           expect(response.statusCode).toEqual(400);
           expect(responseJson.status).toEqual('fail');
           expect(responseJson.message).
-              toEqual('harus mengirimkan username dan password');
+              toEqual('harus mengirimkan title dan body');
         });
 
     it('should response 400 if login payload wrong data type', async () => {
