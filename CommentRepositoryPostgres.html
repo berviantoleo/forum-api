@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: AuthenticationRepositoryPostgres</title>
+    <title>JSDoc: Class: CommentRepositoryPostgres</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: AuthenticationRepositoryPostgres</h1>
+    <h1 class="page-title">Class: CommentRepositoryPostgres</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>AuthenticationRepositoryPostgres<span class="signature">(pool)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>CommentRepositoryPostgres<span class="signature">(pool, idGenerator)</span><span class="type-signature"></span></h2>
         
             <div class="class-description">AuthRepoPostgres</div>
         
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="AuthenticationRepositoryPostgres"><span class="type-signature"></span>new AuthenticationRepositoryPostgres<span class="signature">(pool)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="CommentRepositoryPostgres"><span class="type-signature"></span>new CommentRepositoryPostgres<span class="signature">(pool, idGenerator)</span><span class="type-signature"></span></h4>
     
 
     
@@ -105,7 +105,30 @@
 
             
 
-            <td class="description last">Pool object</td>
+            <td class="description last">Pool Object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>idGenerator</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">IdGenerator Object</td>
         </tr>
 
     
@@ -146,7 +169,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html">Infrastructures/repository/AuthenticationRepositoryPostgres.js</a>, <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html#line7">line 7</a>
+        <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html">Infrastructures/repository/CommentRepositoryPostgres.js</a>, <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -202,7 +225,7 @@
     
 
     
-    <h4 class="name" id="addToken"><span class="type-signature">(async) </span>addToken<span class="signature">(token)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="addComment"><span class="type-signature">(async) </span>addComment<span class="signature">(newComment)</span><span class="type-signature"></span></h4>
     
 
     
@@ -210,7 +233,7 @@
 
 
 <div class="description">
-    Add New Token
+    Add New Comment
 </div>
 
 
@@ -246,555 +269,7 @@
 
         <tr>
             
-                <td class="name"><code>token</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">BigIntToLocaleStringOptions</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">token</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html">Infrastructures/repository/AuthenticationRepositoryPostgres.js</a>, <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html#line21">line 21</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="addToken"><span class="type-signature">(async) </span>addToken<span class="signature">(token)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Add New Token
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>token</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">BigIntToLocaleStringOptions</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">token</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html">Infrastructures/repository/AuthenticationRepositoryPostgres.js</a>, <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html#line21">line 21</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="checkAvailabilityToken"><span class="type-signature">(async) </span>checkAvailabilityToken<span class="signature">(token)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Check Token
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>token</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Token</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html">Infrastructures/repository/AuthenticationRepositoryPostgres.js</a>, <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html#line34">line 34</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="checkAvailabilityToken"><span class="type-signature">(async) </span>checkAvailabilityToken<span class="signature">(token)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Check Token
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>token</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Token</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html">Infrastructures/repository/AuthenticationRepositoryPostgres.js</a>, <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html#line34">line 34</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="deleteToken"><span class="type-signature">(async) </span>deleteToken<span class="signature">(token)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Delete existing token
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>token</code></td>
+                <td class="name"><code>newComment</code></td>
             
 
             <td class="type">
@@ -810,7 +285,7 @@
 
             
 
-            <td class="description last">Token</td>
+            <td class="description last">NewComment Object</td>
         </tr>
 
     
@@ -851,7 +326,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html">Infrastructures/repository/AuthenticationRepositoryPostgres.js</a>, <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html#line51">line 51</a>
+        <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html">Infrastructures/repository/CommentRepositoryPostgres.js</a>, <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html#line24">line 24</a>
     </li></ul></dd>
     
 
@@ -887,7 +362,7 @@
     
 
     
-    <h4 class="name" id="deleteToken"><span class="type-signature">(async) </span>deleteToken<span class="signature">(token)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="addComment"><span class="type-signature">(async) </span>addComment<span class="signature">(newComment)</span><span class="type-signature"></span></h4>
     
 
     
@@ -895,7 +370,7 @@
 
 
 <div class="description">
-    Delete existing token
+    Add New Comment
 </div>
 
 
@@ -931,7 +406,7 @@
 
         <tr>
             
-                <td class="name"><code>token</code></td>
+                <td class="name"><code>newComment</code></td>
             
 
             <td class="type">
@@ -947,7 +422,7 @@
 
             
 
-            <td class="description last">Token</td>
+            <td class="description last">NewComment Object</td>
         </tr>
 
     
@@ -988,7 +463,281 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html">Infrastructures/repository/AuthenticationRepositoryPostgres.js</a>, <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html#line51">line 51</a>
+        <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html">Infrastructures/repository/CommentRepositoryPostgres.js</a>, <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html#line24">line 24</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="deleteComment"><span class="type-signature">(async) </span>deleteComment<span class="signature">(id)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Delete Comment by Id
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Id</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html">Infrastructures/repository/CommentRepositoryPostgres.js</a>, <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html#line44">line 44</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="deleteComment"><span class="type-signature">(async) </span>deleteComment<span class="signature">(id)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Delete Comment by Id
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Id</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html">Infrastructures/repository/CommentRepositoryPostgres.js</a>, <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html#line44">line 44</a>
     </li></ul></dd>
     
 
@@ -1038,7 +787,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>AuthenticationRepositoryPostgres<span class="signature">(pool)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>CommentRepositoryPostgres<span class="signature">(pool, idGenerator)</span><span class="type-signature"></span></h2>
         
             <div class="class-description">AuthRepoPostgres</div>
         
@@ -1055,7 +804,7 @@
     
 
     
-    <h4 class="name" id="AuthenticationRepositoryPostgres"><span class="type-signature"></span>new AuthenticationRepositoryPostgres<span class="signature">(pool)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="CommentRepositoryPostgres"><span class="type-signature"></span>new CommentRepositoryPostgres<span class="signature">(pool, idGenerator)</span><span class="type-signature"></span></h4>
     
 
     
@@ -1115,7 +864,30 @@
 
             
 
-            <td class="description last">Pool object</td>
+            <td class="description last">Pool Object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>idGenerator</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">IdGenerator Object</td>
         </tr>
 
     
@@ -1156,7 +928,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html">Infrastructures/repository/AuthenticationRepositoryPostgres.js</a>, <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html#line7">line 7</a>
+        <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html">Infrastructures/repository/CommentRepositoryPostgres.js</a>, <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -1212,7 +984,7 @@
     
 
     
-    <h4 class="name" id="addToken"><span class="type-signature">(async) </span>addToken<span class="signature">(token)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="addComment"><span class="type-signature">(async) </span>addComment<span class="signature">(newComment)</span><span class="type-signature"></span></h4>
     
 
     
@@ -1220,7 +992,7 @@
 
 
 <div class="description">
-    Add New Token
+    Add New Comment
 </div>
 
 
@@ -1256,555 +1028,7 @@
 
         <tr>
             
-                <td class="name"><code>token</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">BigIntToLocaleStringOptions</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">token</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html">Infrastructures/repository/AuthenticationRepositoryPostgres.js</a>, <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html#line21">line 21</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="addToken"><span class="type-signature">(async) </span>addToken<span class="signature">(token)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Add New Token
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>token</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">BigIntToLocaleStringOptions</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">token</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html">Infrastructures/repository/AuthenticationRepositoryPostgres.js</a>, <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html#line21">line 21</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="checkAvailabilityToken"><span class="type-signature">(async) </span>checkAvailabilityToken<span class="signature">(token)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Check Token
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>token</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Token</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html">Infrastructures/repository/AuthenticationRepositoryPostgres.js</a>, <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html#line34">line 34</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="checkAvailabilityToken"><span class="type-signature">(async) </span>checkAvailabilityToken<span class="signature">(token)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Check Token
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>token</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Token</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html">Infrastructures/repository/AuthenticationRepositoryPostgres.js</a>, <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html#line34">line 34</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="deleteToken"><span class="type-signature">(async) </span>deleteToken<span class="signature">(token)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Delete existing token
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>token</code></td>
+                <td class="name"><code>newComment</code></td>
             
 
             <td class="type">
@@ -1820,7 +1044,7 @@
 
             
 
-            <td class="description last">Token</td>
+            <td class="description last">NewComment Object</td>
         </tr>
 
     
@@ -1861,7 +1085,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html">Infrastructures/repository/AuthenticationRepositoryPostgres.js</a>, <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html#line51">line 51</a>
+        <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html">Infrastructures/repository/CommentRepositoryPostgres.js</a>, <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html#line24">line 24</a>
     </li></ul></dd>
     
 
@@ -1897,7 +1121,7 @@
     
 
     
-    <h4 class="name" id="deleteToken"><span class="type-signature">(async) </span>deleteToken<span class="signature">(token)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="addComment"><span class="type-signature">(async) </span>addComment<span class="signature">(newComment)</span><span class="type-signature"></span></h4>
     
 
     
@@ -1905,7 +1129,7 @@
 
 
 <div class="description">
-    Delete existing token
+    Add New Comment
 </div>
 
 
@@ -1941,7 +1165,7 @@
 
         <tr>
             
-                <td class="name"><code>token</code></td>
+                <td class="name"><code>newComment</code></td>
             
 
             <td class="type">
@@ -1957,7 +1181,7 @@
 
             
 
-            <td class="description last">Token</td>
+            <td class="description last">NewComment Object</td>
         </tr>
 
     
@@ -1998,7 +1222,281 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html">Infrastructures/repository/AuthenticationRepositoryPostgres.js</a>, <a href="Infrastructures_repository_AuthenticationRepositoryPostgres.js.html#line51">line 51</a>
+        <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html">Infrastructures/repository/CommentRepositoryPostgres.js</a>, <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html#line24">line 24</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="deleteComment"><span class="type-signature">(async) </span>deleteComment<span class="signature">(id)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Delete Comment by Id
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Id</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html">Infrastructures/repository/CommentRepositoryPostgres.js</a>, <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html#line44">line 44</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="deleteComment"><span class="type-signature">(async) </span>deleteComment<span class="signature">(id)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Delete Comment by Id
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Id</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html">Infrastructures/repository/CommentRepositoryPostgres.js</a>, <a href="Infrastructures_repository_CommentRepositoryPostgres.js.html#line44">line 44</a>
     </li></ul></dd>
     
 

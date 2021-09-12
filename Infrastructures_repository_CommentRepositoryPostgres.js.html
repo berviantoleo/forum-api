@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Applications/use_case/LoginUserUseCase.js</title>
+    <title>JSDoc: Source: Infrastructures/repository/CommentRepositoryPostgres.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Applications/use_case/LoginUserUseCase.js</h1>
+    <h1 class="page-title">Source: Infrastructures/repository/CommentRepositoryPostgres.js</h1>
 
     
 
@@ -26,60 +26,66 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const UserLogin = require('../../Domains/users/entities/UserLogin');
-const NewAuthentication = require('../../Domains/authentications/entities/NewAuth');
+            <pre class="prettyprint source linenums"><code>const NotFoundError = require('../../Commons/exceptions/NotFoundError');
+const CommentRepository = require('../../Domains/comments/CommentRepository');
+const CreatedComment = require('../../Domains/comments/entities/CreatedComment');
 
 /**
- * LoginUserUseCase
+ * AuthRepoPostgres
  */
-class LoginUserUseCase {
+class CommentRepositoryPostgres extends CommentRepository {
   /**
    * Constructor
-   * @param {*} param0 DI
+   * @param {*} pool Pool Object
+   * @param {*} idGenerator IdGenerator Object
    */
-  constructor({
-    userRepository,
-    authenticationRepository,
-    authenticationTokenManager,
-    passwordHash,
-  }) {
-    this._userRepository = userRepository;
-    this._authenticationRepository = authenticationRepository;
-    this._authenticationTokenManager = authenticationTokenManager;
-    this._passwordHash = passwordHash;
+  constructor(pool, idGenerator) {
+    super();
+    this._pool = pool;
+    this._idGenerator = idGenerator;
   }
 
   /**
-   * Execute
-   * @param {*} useCasePayload UseCase
-   * @return {*} Auth Token
+   * Add New Comment
+   * @param {*} newComment NewComment Object
    */
-  async execute(useCasePayload) {
-    const {username, password} = new UserLogin(useCasePayload);
+  async addComment(newComment) {
+    const {content, threadId, userId} = newComment;
+    const id = `comment-${this._idGenerator()}`;
 
-    const encryptedPassword = await this._userRepository.getPasswordByUsername(username);
+    const query = {
+      text: `INSERT INTO comments (id, content, thread_id, owner_id)
+            VALUES($1, $2, $3, $4)
+            RETURNING id, content, owner_id as owner`,
+      values: [id, content, threadId, userId],
+    };
 
-    await this._passwordHash.comparePassword(password, encryptedPassword);
+    const result = await this._pool.query(query);
 
-    const id = await this._userRepository.getIdByUsername(username);
+    return new CreatedComment({...result.rows[0]});
+  }
 
-    const accessToken = await this._authenticationTokenManager
-        .createAccessToken({username, id});
-    const refreshToken = await this._authenticationTokenManager
-        .createRefreshToken({username, id});
+  /**
+   * Delete Comment by Id
+   * @param {string} id Id
+   */
+  async deleteComment(id) {
+    const query = {
+      text: `UPDATE comments
+            SET is_delete = true
+            WHERE is_delete = false AND id = $1`,
+      values: [id],
+    };
 
-    const newAuthentication = new NewAuthentication({
-      accessToken,
-      refreshToken,
-    });
+    const result = await this._pool.query(query);
 
-    await this._authenticationRepository.addToken(newAuthentication.refreshToken);
-
-    return newAuthentication;
+    if (!result.rowCount) {
+      throw new NotFoundError('comment tidak ditemukan');
+    }
   }
 }
 
-module.exports = LoginUserUseCase;
+module.exports = CommentRepositoryPostgres;
 </code></pre>
         </article>
     </section>
