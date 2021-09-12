@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Infrastructures/security/BcryptPasswordHash.js</title>
+    <title>JSDoc: Source: Applications/use_case/AddCommentUseCase.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Infrastructures/security/BcryptPasswordHash.js</h1>
+    <h1 class="page-title">Source: Applications/use_case/AddCommentUseCase.js</h1>
 
     
 
@@ -26,48 +26,34 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const EncryptionHelper = require('../../Applications/security/PasswordHash');
-const AuthenticationError = require('../../Commons/exceptions/AuthenticationError');
+            <pre class="prettyprint source linenums"><code>const NewComment = require('../../Domains/comments/entities/NewComment');
 
 /**
- * BcryptPasswordHash
+ * AddUserUseCase
  */
-class BcryptPasswordHash extends EncryptionHelper {
+class AddCommentUseCase {
   /**
    * Constructor
-   * @param {*} bcrypt Bcypt Object
-   * @param {*} saltRound Salt Round
+   * @param {*} param0 DI
    */
-  constructor(bcrypt, saltRound = 10) {
-    super();
-    this._bcrypt = bcrypt;
-    this._saltRound = saltRound;
+  constructor({commentRepository, threadRepository}) {
+    this._commentRepository = commentRepository;
+    this._threadRepository = threadRepository;
   }
 
   /**
-   * Hash Password
-   * @param {string} password Plain Password
-   * @return {string} Hashed Password
+   * Execute
+   * @param {*} useCasePayload UseCase
+   * @return {*} User
    */
-  async hash(password) {
-    return this._bcrypt.hash(password, this._saltRound);
-  }
-
-  /**
-   * Comparing Password
-   * @param {string} password Plain Password
-   * @param {string} hashedPassword Hashed Password
-   */
-  async comparePassword(password, hashedPassword) {
-    const result = await this._bcrypt.compare(password, hashedPassword);
-
-    if (!result) {
-      throw new AuthenticationError('kredensial yang Anda masukkan salah');
-    }
+  async execute(useCasePayload) {
+    const newComment = new NewComment(useCasePayload);
+    await this._threadRepository.verifyThreadExist(newComment.threadId);
+    return this._commentRepository.addComment(newComment);
   }
 }
 
-module.exports = BcryptPasswordHash;
+module.exports = AddCommentUseCase;
 </code></pre>
         </article>
     </section>
