@@ -56,10 +56,14 @@ class ThreadRepositoryPostgres extends ThreadRepository {
     }
 
     const queryComments = {
-      text: `SELECT comments.id, users.username, comments.date, comments.content
+      text: `SELECT comments.id, users.username, comments.date,
+              CASE WHEN comments.is_delete THEN '**komentar telah dihapus**'
+                   ELSE comments.content
+              END
               FROM comments
               JOIN users ON comments.owner_id = users.id
-              WHERE thread_id = $1`,
+              WHERE thread_id = $1
+              ORDER BY comments.date`,
       values: [id],
     };
     const resultComments = await this._pool.query(queryComments);
