@@ -1,4 +1,5 @@
 const AddThreadUseCase = require('../../../../Applications/use_case/AddThreadUseCase');
+const GetThreadByIdUseCase = require('../../../../Applications/use_case/GetThreadByIdUseCase');
 
 /**
  * ThreadsHandler Class
@@ -12,6 +13,7 @@ class ThreadsHandler {
     this._container = container;
 
     this.postThreadHandler = this.postThreadHandler.bind(this);
+    this.getThreadbyIdHandler = this.getThreadbyIdHandler.bind(this);
   }
 
   /**
@@ -34,6 +36,25 @@ class ThreadsHandler {
     });
     response.code(201);
     return response;
+  }
+
+  /**
+   * Get Thread by Id Handler
+   * @param {*} request Hapi Request
+   * @param {*} h Hapi Response Toolkit
+   * @return {*} Hapi Response
+   */
+  async getThreadbyIdHandler(request, h) {
+    const {threadId} = request.params;
+    const getThreadByIdUseCase = this._container.getInstance(GetThreadByIdUseCase.name);
+    const thread = await getThreadByIdUseCase.execute({threadId});
+
+    return {
+      status: 'success',
+      data: {
+        thread,
+      },
+    };
   }
 }
 

@@ -6,6 +6,7 @@ const ThreadsTableTestHelper = require('../../../../tests/ThreadsTableTestHelper
 const container = require('../../container');
 const createServer = require('../createServer');
 const ServerTestHelper = require('../../../../tests/ServerTestHelper');
+const CommentsTableTestHelper = require('../../../../tests/CommentsTableTestHelper');
 
 describe('/threads endpoint', () => {
   afterAll(async () => {
@@ -122,6 +123,79 @@ describe('/threads endpoint', () => {
       expect(responseJson.statusCode).toEqual(401);
       expect(responseJson.error).toEqual('Unauthorized');
       expect(responseJson.message).toEqual('Missing authentication');
+    });
+  });
+
+  describe('when GET /threads/{threadId}', () => {
+    it('should response 200 for existing', async () => {
+      // Arrange
+      const threadId = 'thread-12345';
+      const userId = 'user-123333';
+      const threadTitle = 'title is good';
+      await ServerTestHelper.getAccessToken(userId); // just create user
+      await ThreadsTableTestHelper.addThread({id: threadId, title: threadTitle, userId});
+      const server = await createServer(container);
+
+      // Action
+      const response = await server.inject({
+        method: 'GET',
+        url: `/threads/${threadId}`,
+      });
+
+      // Assert
+      const responseJson = JSON.parse(response.payload);
+      expect(response.statusCode).toEqual(200);
+      expect(responseJson.status).toEqual('success');
+      expect(responseJson.data.thread).toBeDefined();
+      expect(responseJson.data.thread.title).toEqual(threadTitle);
+      expect(responseJson.data.thread.id).toContain('thread-');
+    });
+
+    it('should response 404 if thread not found',
+        async () => {
+          // Arrange
+          const threadId = 'thread-randomly';
+          const server = await createServer(container);
+
+          // Action
+          const response = await server.inject({
+            method: 'GET',
+            url: `/threads/${threadId}`,
+          });
+
+          // Assert
+          const responseJson = JSON.parse(response.payload);
+          expect(response.statusCode).toEqual(404);
+          expect(responseJson.status).toEqual('fail');
+          expect(responseJson.message).toEqual('thread tidak ditemukan');
+        });
+
+    it('should return deleted comment correctly', async () => {
+      // Arrange
+      const threadId = 'thread-12345';
+      const userId = 'user-123333';
+      const threadTitle = 'title is good';
+      const commentId = 'comment-1999';
+      await ServerTestHelper.getAccessToken(userId); // just create user
+      await ThreadsTableTestHelper.addThread({id: threadId, title: threadTitle, userId});
+      await CommentsTableTestHelper.addComment({id: commentId, threadId, userId, isDeleted: true});
+      const server = await createServer(container);
+
+      // Action
+      const response = await server.inject({
+        method: 'GET',
+        url: `/threads/${threadId}`,
+      });
+
+      // Assert
+      const responseJson = JSON.parse(response.payload);
+      expect(response.statusCode).toEqual(200);
+      expect(responseJson.status).toEqual('success');
+      expect(responseJson.data.thread).toBeDefined();
+      expect(responseJson.data.thread.title).toEqual(threadTitle);
+      expect(responseJson.data.thread.id).toContain('thread-');
+      expect(responseJson.data.thread.comments).toBeDefined();
+      expect(responseJson.data.thread.comments[0].content).toEqual('**komentar telah dihapus**');
     });
   });
 });
