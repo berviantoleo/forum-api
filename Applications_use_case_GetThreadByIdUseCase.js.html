@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Applications/use_case/RefreshAuthenticationUseCase.js</title>
+    <title>JSDoc: Source: Applications/use_case/GetThreadByIdUseCase.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Applications/use_case/RefreshAuthenticationUseCase.js</h1>
+    <h1 class="page-title">Source: Applications/use_case/GetThreadByIdUseCase.js</h1>
 
     
 
@@ -27,56 +27,29 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * RefresgAuthenticationUseCase
+ * GetThreadByIdUseCase
  */
-class RefreshAuthenticationUseCase {
+class GetThreadByIdUseCase {
   /**
    * Constructor
    * @param {*} param0 DI
    */
-  constructor({
-    authenticationRepository,
-    authenticationTokenManager,
-  }) {
-    this._authenticationRepository = authenticationRepository;
-    this._authenticationTokenManager = authenticationTokenManager;
+  constructor({threadRepository}) {
+    this._threadRepository = threadRepository;
   }
 
   /**
    * Execute
-   * @param {*} useCasePayload Payload
-   * @return {string} Access Token
+   * @param {*} useCasePayload UseCase
+   * @return {*} User
    */
   async execute(useCasePayload) {
-    this._verifyPayload(useCasePayload);
-    const {refreshToken} = useCasePayload;
-
-    await this._authenticationTokenManager.verifyRefreshToken(refreshToken);
-    await this._authenticationRepository.checkAvailabilityToken(refreshToken);
-
-    const {username, id} = await this._authenticationTokenManager.decodePayload(refreshToken);
-
-    return this._authenticationTokenManager.createAccessToken({username, id});
-  }
-
-  /**
-   * Verify Payload
-   * @param {*} payload Payload
-   */
-  _verifyPayload(payload) {
-    const {refreshToken} = payload;
-
-    if (!refreshToken) {
-      throw new Error('REFRESH_AUTHENTICATION_USE_CASE.NOT_CONTAIN_REFRESH_TOKEN');
-    }
-
-    if (typeof refreshToken !== 'string') {
-      throw new Error('REFRESH_AUTHENTICATION_USE_CASE.PAYLOAD_NOT_MEET_DATA_TYPE_SPECIFICATION');
-    }
+    const {threadId} = useCasePayload;
+    return this._threadRepository.getThreadById(threadId);
   }
 }
 
-module.exports = RefreshAuthenticationUseCase;
+module.exports = GetThreadByIdUseCase;
 </code></pre>
         </article>
     </section>
