@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Interfaces/http/api/users/handler.js</title>
+    <title>JSDoc: Source: Applications/use_case/DeleteCommentUseCase.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Interfaces/http/api/users/handler.js</h1>
+    <h1 class="page-title">Source: Applications/use_case/DeleteCommentUseCase.js</h1>
 
     
 
@@ -26,44 +26,36 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const AddUserUseCase = require('../../../../Applications/use_case/AddUserUseCase');
-
+            <pre class="prettyprint source linenums"><code>const AuthorizationError = require('../../Commons/exceptions/AuthorizationError');
 /**
- * UsersHandler Class
+ * DeleteCommentUseCase
  */
-class UsersHandler {
+class DeleteCommentUseCase {
   /**
-   * UsersHandler Constructor
-   * @param {*} container container
+   * Constructor
+   * @param {*} param0 DI
    */
-  constructor(container) {
-    this._container = container;
-
-    this.postUserHandler = this.postUserHandler.bind(this);
+  constructor({commentRepository, threadRepository}) {
+    this._commentRepository = commentRepository;
+    this._threadRepository = threadRepository;
   }
 
   /**
-   * Create User Handler
-   * @param {*} request Hapi Request
-   * @param {*} h Hapi Response Toolkit
-   * @return {*} Hapi Response
+   * Execute
+   * @param {*} useCasePayload UseCase
    */
-  async postUserHandler(request, h) {
-    const addUserUseCase = this._container.getInstance(AddUserUseCase.name);
-    const addedUser = await addUserUseCase.execute(request.payload);
-
-    const response = h.response({
-      status: 'success',
-      data: {
-        addedUser,
-      },
-    });
-    response.code(201);
-    return response;
+  async execute(useCasePayload) {
+    const {threadId, commentId, userId} = useCasePayload;
+    await this._threadRepository.verifyThreadExist(threadId);
+    const {owner} = await this._commentRepository.getCommentById(commentId);
+    if (owner !== userId) {
+      throw new AuthorizationError('tidak dapat menghapus komentar yang bukan milik anda');
+    }
+    await this._commentRepository.deleteComment(commentId);
   }
 }
 
-module.exports = UsersHandler;
+module.exports = DeleteCommentUseCase;
 </code></pre>
         </article>
     </section>
