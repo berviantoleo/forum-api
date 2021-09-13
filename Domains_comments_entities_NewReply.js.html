@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Applications/use_case/LoginUserUseCase.js</title>
+    <title>JSDoc: Source: Domains/comments/entities/NewReply.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Applications/use_case/LoginUserUseCase.js</h1>
+    <h1 class="page-title">Source: Domains/comments/entities/NewReply.js</h1>
 
     
 
@@ -26,60 +26,46 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const UserLogin = require('../../Domains/users/entities/UserLogin');
-const NewAuthentication = require('../../Domains/authentications/entities/NewAuth');
-
-/**
- * LoginUserUseCase
+            <pre class="prettyprint source linenums"><code>/**
+ * NewReply class
  */
-class LoginUserUseCase {
+class NewReply {
   /**
-   * Constructor
-   * @param {*} param0 DI
-   */
-  constructor({
-    userRepository,
-    authenticationRepository,
-    authenticationTokenManager,
-    passwordHash,
-  }) {
-    this._userRepository = userRepository;
-    this._authenticationRepository = authenticationRepository;
-    this._authenticationTokenManager = authenticationTokenManager;
-    this._passwordHash = passwordHash;
+       * NewReply constructor
+       * @param {*} payload Hapi Request Payload
+       */
+  constructor(payload) {
+    this._verifyPayload(payload);
+
+    const {content, threadId, commentId, userId} = payload;
+
+    this.content = content;
+    this.threadId = threadId;
+    this.commentId = commentId;
+    this.userId = userId;
   }
 
   /**
-   * Execute
-   * @param {*} useCasePayload UseCase
-   * @return {*} Auth Token
-   */
-  async execute(useCasePayload) {
-    const {username, password} = new UserLogin(useCasePayload);
+       * Verify Payload
+       * @param {*} param0 Hapi Request Payload
+       */
+  _verifyPayload({content, threadId, commentId, userId}) {
+    if (!content || !threadId || !commentId || !userId) {
+      throw new Error('NEW_REPLY.NOT_CONTAIN_NEEDED_PROPERTY');
+    }
 
-    const encryptedPassword = await this._userRepository.getPasswordByUsername(username);
-
-    await this._passwordHash.comparePassword(password, encryptedPassword);
-
-    const id = await this._userRepository.getIdByUsername(username);
-
-    const accessToken = await this._authenticationTokenManager
-        .createAccessToken({username, id});
-    const refreshToken = await this._authenticationTokenManager
-        .createRefreshToken({username, id});
-
-    const newAuthentication = new NewAuthentication({
-      accessToken,
-      refreshToken,
-    });
-
-    await this._authenticationRepository.addToken(newAuthentication.refreshToken);
-
-    return newAuthentication;
+    if (
+      typeof content !== 'string' ||
+          typeof threadId !== 'string' ||
+          typeof commentId !== 'string' ||
+          typeof userId !== 'string'
+    ) {
+      throw new Error('NEW_REPLY.NOT_MEET_DATA_TYPE_SPECIFICATION');
+    }
   }
 }
 
-module.exports = LoginUserUseCase;
+module.exports = NewReply;
 </code></pre>
         </article>
     </section>

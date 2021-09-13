@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Applications/use_case/LoginUserUseCase.js</title>
+    <title>JSDoc: Source: Interfaces/http/api/replies/handler.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Applications/use_case/LoginUserUseCase.js</h1>
+    <h1 class="page-title">Source: Interfaces/http/api/replies/handler.js</h1>
 
     
 
@@ -26,60 +26,68 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const UserLogin = require('../../Domains/users/entities/UserLogin');
-const NewAuthentication = require('../../Domains/authentications/entities/NewAuth');
+            <pre class="prettyprint source linenums"><code>const AddReplyUseCase = require('../../../../Applications/use_case/AddReplyUseCase');
+const DeleteReplyUseCase = require('../../../../Applications/use_case/DeleteReplyUseCase');
+
 
 /**
- * LoginUserUseCase
+ * RepliesHandler Class
  */
-class LoginUserUseCase {
+class RepliesHandler {
   /**
-   * Constructor
-   * @param {*} param0 DI
+   * RepliesHandler Constructor
+   * @param {*} container container
    */
-  constructor({
-    userRepository,
-    authenticationRepository,
-    authenticationTokenManager,
-    passwordHash,
-  }) {
-    this._userRepository = userRepository;
-    this._authenticationRepository = authenticationRepository;
-    this._authenticationTokenManager = authenticationTokenManager;
-    this._passwordHash = passwordHash;
+  constructor(container) {
+    this._container = container;
+
+    this.postReplyHandler = this.postReplyHandler.bind(this);
+    this.deleteReplyHandler = this.deleteReplyHandler.bind(this);
   }
 
   /**
-   * Execute
-   * @param {*} useCasePayload UseCase
-   * @return {*} Auth Token
+   * Create Reply Handler
+   * @param {*} request Hapi Request
+   * @param {*} h Hapi Response Toolkit
+   * @return {*} Hapi Response
    */
-  async execute(useCasePayload) {
-    const {username, password} = new UserLogin(useCasePayload);
+  async postReplyHandler(request, h) {
+    const {id: userId} = request.auth.credentials;
+    const {threadId, commentId} = request.params;
+    const addReplyUseCase = this._container.getInstance(AddReplyUseCase.name);
+    const newPayload = Object.assign(request.payload, {userId, threadId, commentId});
+    const addedReply = await addReplyUseCase.execute(newPayload);
 
-    const encryptedPassword = await this._userRepository.getPasswordByUsername(username);
-
-    await this._passwordHash.comparePassword(password, encryptedPassword);
-
-    const id = await this._userRepository.getIdByUsername(username);
-
-    const accessToken = await this._authenticationTokenManager
-        .createAccessToken({username, id});
-    const refreshToken = await this._authenticationTokenManager
-        .createRefreshToken({username, id});
-
-    const newAuthentication = new NewAuthentication({
-      accessToken,
-      refreshToken,
+    const response = h.response({
+      status: 'success',
+      data: {
+        addedReply,
+      },
     });
+    response.code(201);
+    return response;
+  }
 
-    await this._authenticationRepository.addToken(newAuthentication.refreshToken);
+  /**
+   * Delete Reply Handler
+   * @param {*} request Hapi Request
+   * @param {*} h Hapi Response Toolkit
+   * @return {*} Hapi Response
+   */
+  async deleteReplyHandler(request, h) {
+    const {id: userId} = request.auth.credentials;
+    const {threadId, commentId, replyId} = request.params;
+    const deleteReplyUseCase = this._container.getInstance(DeleteReplyUseCase.name);
+    const deletePayload = {userId, threadId, commentId, replyId};
+    await deleteReplyUseCase.execute(deletePayload);
 
-    return newAuthentication;
+    return {
+      status: 'success',
+    };
   }
 }
 
-module.exports = LoginUserUseCase;
+module.exports = RepliesHandler;
 </code></pre>
         </article>
     </section>
