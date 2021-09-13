@@ -11,6 +11,14 @@ class CommentRepository {
   }
 
   /**
+   * GetComment by Id
+   * @param {string} id Comment Id
+   */
+  async getCommentById(id) {
+    throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  }
+
+  /**
    * Delete Comment by Id
    * @param {string} id Id
    */

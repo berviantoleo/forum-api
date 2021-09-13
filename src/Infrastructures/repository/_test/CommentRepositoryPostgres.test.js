@@ -67,6 +67,34 @@ describe('CommentRepositoryPostgres', () => {
     });
   });
 
+  describe('getCommentById function', () => {
+    it('should throw error when not found any comments', async () => {
+      // Arrange
+      const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
+      await expect(commentRepositoryPostgres.getCommentById('randomly-unknown')).rejects.toThrow(NotFoundError);
+    });
+
+    it('should not throw anything when found', async () => {
+      // Arrange
+      const userId = 'user-1234567890000';
+      const threadId = 'thread-1234567899';
+      const commentId = 'comment-123888888';
+      await UserTableTestHelper.addUser({id: userId, username: 'threadusernew'});
+      await ThreadsTableTestHelper.addThread({id: threadId, title: 'thread-everything', body: 'it is ok', userId: userId});
+      await CommentsTableTestHelper.addComment({id: commentId, content: 'Hello 12134', threadId: threadId, userId: userId});
+      const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
+
+      // Action
+      const foundedComment = await commentRepositoryPostgres.getCommentById(commentId);
+
+      // Assert
+      expect(foundedComment).toStrictEqual({
+        id: commentId,
+        owner: userId,
+      });
+    });
+  });
+
   describe('deleteComment function', () => {
     it('should persist is_delete of the comment to true', async () => {
       // Arrange

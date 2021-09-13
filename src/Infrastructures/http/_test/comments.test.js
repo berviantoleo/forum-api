@@ -57,15 +57,17 @@ describe('/threads/{threadId}/comments endpoint', () => {
         async () => {
           // Arrange
           const requestPayload = {
-            title: 'Help Me to Find Good Title',
           };
-          const accessToken = await ServerTestHelper.getAccessToken();
+          const threadId = 'thread-12366669';
+          const userId = 'user-1233414';
+          const accessToken = await ServerTestHelper.getAccessToken(userId);
+          await ThreadsTableTestHelper.addThread({id: threadId, userId});
           const server = await createServer(container);
 
           // Action
           const response = await server.inject({
             method: 'POST',
-            url: '/threads',
+            url: `/threads/${threadId}/comments`,
             payload: requestPayload,
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -77,22 +79,24 @@ describe('/threads/{threadId}/comments endpoint', () => {
           expect(response.statusCode).toEqual(400);
           expect(responseJson.status).toEqual('fail');
           expect(responseJson.message).
-              toEqual('harus mengirimkan title dan body');
+              toEqual('harus mengirimkan content');
         });
 
     it('should response 400 if thread payload wrong data type', async () => {
       // Arrange
       const requestPayload = {
-        title: 9999999999,
-        body: 'I don\'t know what should I write here. Please tell me.',
+        content: 9999999999,
       };
-      const accessToken = await ServerTestHelper.getAccessToken();
+      const threadId = 'thread-12366669';
+      const userId = 'user-1233414';
+      const accessToken = await ServerTestHelper.getAccessToken(userId);
+      await ThreadsTableTestHelper.addThread({id: threadId, userId});
       const server = await createServer(container);
 
       // Action
       const response = await server.inject({
         method: 'POST',
-        url: '/threads',
+        url: `/threads/${threadId}/comments`,
         payload: requestPayload,
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -104,21 +108,51 @@ describe('/threads/{threadId}/comments endpoint', () => {
       expect(response.statusCode).toEqual(400);
       expect(responseJson.status).toEqual('fail');
       expect(responseJson.message).
-          toEqual('title dan body harus string');
+          toEqual('content harus string');
     });
 
-    it('should response 401 if without token', async () => {
+    it('should response 404 if threadId not found', async () => {
       // Arrange
       const requestPayload = {
-        title: 'Any title please',
-        body: 'I don\'t know what should I write here. Please tell me.',
+        content: 'My random comment is real/',
       };
+      const userId = 'user-1233414';
+      const accessToken = await ServerTestHelper.getAccessToken(userId);
       const server = await createServer(container);
 
       // Action
       const response = await server.inject({
         method: 'POST',
-        url: '/threads',
+        url: `/threads/thread-notexistss/comments`,
+        payload: requestPayload,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      // Assert
+      const responseJson = JSON.parse(response.payload);
+      expect(response.statusCode).toEqual(404);
+      expect(responseJson.status).toEqual('fail');
+      expect(responseJson.message).
+          toEqual('thread tidak ditemukan');
+    });
+
+    it('should response 401 if without token', async () => {
+      // Arrange
+      const requestPayload = {
+        content: 'Any comment please',
+      };
+      const threadId = 'thread-12366669';
+      const userId = 'user-1233414';
+      await ServerTestHelper.getAccessToken(userId); // just for create user
+      await ThreadsTableTestHelper.addThread({id: threadId, userId});
+      const server = await createServer(container);
+
+      // Action
+      const response = await server.inject({
+        method: 'POST',
+        url: `/threads/${threadId}/comments`,
         payload: requestPayload,
       });
 

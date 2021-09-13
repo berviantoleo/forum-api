@@ -38,6 +38,26 @@ class CommentRepositoryPostgres extends CommentRepository {
   }
 
   /**
+   * GetComment by Id
+   * @param {string} id Comment Id
+   */
+  async getCommentById(id) {
+    const query = {
+      text: `SELECT id, owner_id as owner FROM comments
+            WHERE is_delete = false AND id = $1
+            FETCH FIRST ROW ONLY`,
+      values: [id],
+    };
+    const result = await this._pool.query(query);
+
+    if (!result.rowCount) {
+      throw new NotFoundError('comment tidak ditemukan');
+    }
+
+    return result.rows[0];
+  }
+
+  /**
    * Delete Comment by Id
    * @param {string} id Id
    */
