@@ -62,13 +62,31 @@ class ThreadRepositoryPostgres extends ThreadRepository {
               END
               FROM comments
               JOIN users ON comments.owner_id = users.id
-              WHERE thread_id = $1
+              WHERE thread_id = $1 AND reply_to IS NULL
               ORDER BY comments.date`,
       values: [id],
     };
     const resultComments = await this._pool.query(queryComments);
+    const comments = resultComments.rows;
+    if (resultComments.rowCount) {
+      for (const comment of comments) {
+        const queryReplies = {
+          text: `SELECT comments.id, users.username, comments.date,
+                  CASE WHEN comments.is_delete THEN '**balasan telah dihapus**'
+                       ELSE comments.content
+                  END
+                  FROM comments
+                  JOIN users ON comments.owner_id = users.id
+                  WHERE thread_id = $1 AND reply_to = $2
+                  ORDER BY comments.date`,
+          values: [id, comment.id],
+        };
+        const resultReplies = await this._pool.query(queryReplies);
+        comment.replies = resultReplies.rows;
+      }
+    }
     const thread = result.rows[0];
-    thread.comments = resultComments.rows;
+    thread.comments = comments;
     return thread;
   }
 

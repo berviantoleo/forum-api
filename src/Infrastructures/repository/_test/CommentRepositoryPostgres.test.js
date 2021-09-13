@@ -6,6 +6,7 @@ const CreatedComment = require('../../../Domains/comments/entities/CreatedCommen
 const pool = require('../../database/postgres/pool');
 const CommentRepositoryPostgres = require('../CommentRepositoryPostgres');
 const NotFoundError = require('../../../Commons/exceptions/NotFoundError');
+const NewReply = require('../../../Domains/comments/entities/NewReply');
 
 describe('CommentRepositoryPostgres', () => {
   afterEach(async () => {
@@ -67,6 +68,62 @@ describe('CommentRepositoryPostgres', () => {
     });
   });
 
+  describe('addReply function', () => {
+    it('should persist new reply and return created comment correctly', async () => {
+      // Arrange
+      const userId = 'user-1234567890000';
+      const threadId = 'thread-1234567899';
+      const commentId = 'comment-12399';
+      await UserTableTestHelper.addUser({id: userId, username: 'threadusernew'});
+      await ThreadsTableTestHelper.addThread({id: threadId, title: 'thread-everything', body: 'it is ok', userId: userId});
+      await CommentsTableTestHelper.addComment({id: commentId, threadId, userId});
+      const newReply = new NewReply({
+        content: 'I want to add new reply into your comment',
+        threadId: threadId,
+        commentId: commentId,
+        userId: userId,
+      });
+      const fakeIdGenerator = () => '123'; // stub!
+      const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, fakeIdGenerator);
+
+      // Action
+      await commentRepositoryPostgres.addReply(newReply);
+
+      // Assert
+      const comments = await CommentsTableTestHelper.findCommentsById('reply-123');
+      expect(comments).toHaveLength(1);
+    });
+
+    it('should return created comment correctly', async () => {
+      // Arrange
+      const userId = 'user-1234567890000';
+      const threadId = 'thread-1234567899';
+      const commentId = 'comment-12399';
+      await UserTableTestHelper.addUser({id: userId, username: 'threadusernew'});
+      await ThreadsTableTestHelper.addThread({id: threadId, title: 'thread-everything', body: 'it is ok', userId: userId});
+      await CommentsTableTestHelper.addComment({id: commentId, threadId, userId});
+      const newReply = new NewReply({
+        content: 'I want to add new reply into your comment',
+        threadId: threadId,
+        commentId: commentId,
+        userId: userId,
+      });
+      const fakeIdGenerator = () => '123'; // stub!
+      const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, fakeIdGenerator);
+
+      // Action
+      const createdComment = await commentRepositoryPostgres.addReply(newReply);
+
+      // Assert
+      expect(createdComment).toStrictEqual(new CreatedComment({
+        id: 'reply-123',
+        content: 'I want to add new reply into your comment',
+        owner: userId,
+      }));
+    });
+  });
+
+
   describe('getCommentById function', () => {
     it('should throw error when not found any comments', async () => {
       // Arrange
@@ -92,6 +149,28 @@ describe('CommentRepositoryPostgres', () => {
         id: commentId,
         owner: userId,
       });
+    });
+  });
+
+  describe('verifyCommentExist function', () => {
+    it('should throw error when not found any comments', async () => {
+      // Arrange
+      const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
+      await expect(commentRepositoryPostgres.verifyCommentExist('randomly-unknown')).rejects.toThrow(NotFoundError);
+    });
+
+    it('should not throw anything when found', async () => {
+      // Arrange
+      const userId = 'user-1234567890000';
+      const threadId = 'thread-1234567899';
+      const commentId = 'comment-123888888';
+      await UserTableTestHelper.addUser({id: userId, username: 'threadusernew'});
+      await ThreadsTableTestHelper.addThread({id: threadId, title: 'thread-everything', body: 'it is ok', userId: userId});
+      await CommentsTableTestHelper.addComment({id: commentId, content: 'Hello 12134', threadId: threadId, userId: userId});
+      const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
+
+      // Action & Assert
+      await expect(commentRepositoryPostgres.verifyCommentExist(commentId)).resolves.not.toThrow();
     });
   });
 

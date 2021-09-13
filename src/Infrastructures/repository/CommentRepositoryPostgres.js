@@ -38,6 +38,26 @@ class CommentRepositoryPostgres extends CommentRepository {
   }
 
   /**
+   * Add New Reply
+   * @param {*} newReply NewReply Object
+   */
+  async addReply(newReply) {
+    const {content, threadId, commentId, userId} = newReply;
+    const id = `reply-${this._idGenerator()}`;
+
+    const query = {
+      text: `INSERT INTO comments (id, content, thread_id, reply_to, owner_id)
+            VALUES($1, $2, $3, $4, $5)
+            RETURNING id, content, owner_id as owner`,
+      values: [id, content, threadId, commentId, userId],
+    };
+
+    const result = await this._pool.query(query);
+
+    return new CreatedComment({...result.rows[0]});
+  }
+
+  /**
    * GetComment by Id
    * @param {string} id Comment Id
    */
@@ -56,6 +76,25 @@ class CommentRepositoryPostgres extends CommentRepository {
 
     return result.rows[0];
   }
+
+  /**
+   * verifyCommentExist by Id
+   * @param {string} id Comment Id
+   */
+  async verifyCommentExist(id) {
+    const query = {
+      text: `SELECT id FROM comments
+            WHERE is_delete = false AND id = $1
+            FETCH FIRST ROW ONLY`,
+      values: [id],
+    };
+    const result = await this._pool.query(query);
+
+    if (!result.rowCount) {
+      throw new NotFoundError('comment tidak ditemukan');
+    }
+  }
+
 
   /**
    * Delete Comment by Id
