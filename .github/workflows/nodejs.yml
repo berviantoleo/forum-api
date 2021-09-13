@@ -67,25 +67,25 @@ jobs:
         curl -Os https://uploader.codecov.io/latest/linux/codecov
         chmod +x codecov
         ./codecov
-    - name: Run use pm2
-      run: |
-        npm install pm2@latest -g
-        pm2 start src/ --name forum_api
-        pm2 ls
-    - uses: matt-ball/newman-action@v0.2.4
-      with:
-        collection: postman/forumapi.postman_collection.json
-        environment: postman/forumapi.postman_environment.json
-    - name: Stop server
-      run: pm2 stop forum_api
-    - name: Generate Docs
-      run: yarn docs
-    - name: Publish to Github Pages
-      if: ${{ github.event_name == 'push' && matrix.node-version == '14.x' }}
-      uses: JamesIves/github-pages-deploy-action@4.1.5
-      with:
-        branch: gh-pages # The branch the action should deploy to.
-        folder: docs # The folder the action should deploy.
+    # - name: Run use pm2
+    #  run: |
+    #    npm install pm2@latest -g
+    #    pm2 start src/ --name forum_api
+    #    pm2 ls
+    #- uses: matt-ball/newman-action@v0.2.4
+    #  with:
+    #    collection: postman/forumapi.postman_collection.json
+    #    environment: postman/forumapi.postman_environment.json
+    #- name: Stop server
+    #  run: pm2 stop forum_api
+    #- name: Generate Docs
+    #  run: yarn docs
+    #- name: Publish to Github Pages
+    #  if: ${{ github.event_name == 'push' && matrix.node-version == '14.x' }}
+    #  uses: JamesIves/github-pages-deploy-action@4.1.5
+    #  with:
+    #    branch: gh-pages # The branch the action should deploy to.
+    #    folder: docs # The folder the action should deploy.
   docker-push:
     # Ensure test job passes before pushing image.
     needs: build
