@@ -5,4 +5,4 @@ RUN yarn --frozen-lockfile
 COPY . .
 RUN adduser -D forumapi && chown -R forumapi /app
 USER forumapi
-CMD ["npm","start"]
+CMD ["npm","run start:prod"]

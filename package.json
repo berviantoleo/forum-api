@@ -4,8 +4,9 @@
   "description": "Forum API",
   "main": "src/app.js",
   "scripts": {
-    "start": "node src/app.js",
-    "start:dev": "nodemon src/app.js",
+    "start": "node -r dotenv/config src/app.js",
+    "start:dev": "nodemon -r dotenv/config src/app.js",
+    "start:prod": "node src/app.js",
     "docs": "jsdoc --readme README.md -c jsdoc.json -d docs -r src",
     "lint": "eslint .",
     "test": "jest --setupFiles dotenv/config -i",
