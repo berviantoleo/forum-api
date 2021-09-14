@@ -78,6 +78,49 @@ class CommentRepositoryPostgres extends CommentRepository {
   }
 
   /**
+   * Get Comment by ThreadId
+   * @param {string} threadId thread id
+   * @return {*} Get comments
+   */
+  async getCommentsByThreadId(threadId) {
+    const queryComments = {
+      text: `SELECT comments.id, users.username, comments.date,
+              CASE WHEN comments.is_delete THEN '**komentar telah dihapus**'
+                   ELSE comments.content
+              END
+              FROM comments
+              JOIN users ON comments.owner_id = users.id
+              WHERE thread_id = $1 AND reply_to IS NULL
+              ORDER BY comments.date`,
+      values: [threadId],
+    };
+    const resultComments = await this._pool.query(queryComments);
+    return resultComments.rows;
+  }
+
+  /**
+   * Get replies
+   * @param {string} threadId threadId
+   * @param {string} commentId commentId
+   * @return {*} All replies
+   */
+  async getReplies(threadId, commentId) {
+    const queryReplies = {
+      text: `SELECT comments.id, users.username, comments.date,
+              CASE WHEN comments.is_delete THEN '**balasan telah dihapus**'
+                   ELSE comments.content
+              END
+              FROM comments
+              JOIN users ON comments.owner_id = users.id
+              WHERE thread_id = $1 AND reply_to = $2
+              ORDER BY comments.date`,
+      values: [threadId, commentId],
+    };
+    const resultReplies = await this._pool.query(queryReplies);
+    return resultReplies.rows;
+  }
+
+  /**
    * verifyCommentExist by Id
    * @param {string} id Comment Id
    */

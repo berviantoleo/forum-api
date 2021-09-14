@@ -27,6 +27,24 @@ class CommentRepository {
   }
 
   /**
+   * Get Comment by ThreadId
+   * @param {string} threadId thread id
+   */
+  async getCommentsByThreadId(threadId) {
+    throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  }
+
+  /**
+   * Get replies
+   * @param {string} threadId threadId
+   * @param {string} commentId commentId
+   * @return {*} All replies
+   */
+  async getReplies(threadId, commentId) {
+    throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  }
+
+  /**
    * veryCommentExist by Id
    * @param {string} id Comment Id
    */

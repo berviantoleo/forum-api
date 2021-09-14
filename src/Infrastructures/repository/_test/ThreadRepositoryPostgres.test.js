@@ -36,8 +36,6 @@ describe('ThreadRepositoryPostgres', () => {
       // Action & Assert
       const thread = await threadRepositoryPostgres.getThreadById(threadId);
       expect(thread.id).toEqual(threadId);
-      expect(thread).toHaveProperty('comments');
-      expect(thread.comments).toHaveLength(0);
     });
   });
 
