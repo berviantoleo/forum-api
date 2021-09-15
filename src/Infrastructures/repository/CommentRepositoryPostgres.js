@@ -84,10 +84,7 @@ class CommentRepositoryPostgres extends CommentRepository {
    */
   async getCommentsByThreadId(threadId) {
     const queryComments = {
-      text: `SELECT comments.id, users.username, comments.date,
-              CASE WHEN comments.is_delete THEN '**komentar telah dihapus**'
-                   ELSE comments.content
-              END
+      text: `SELECT comments.id, users.username, comments.date, comments.content, comments.is_delete as isdeleted
               FROM comments
               JOIN users ON comments.owner_id = users.id
               WHERE thread_id = $1 AND reply_to IS NULL
@@ -106,10 +103,7 @@ class CommentRepositoryPostgres extends CommentRepository {
    */
   async getReplies(threadId, commentId) {
     const queryReplies = {
-      text: `SELECT comments.id, users.username, comments.date,
-              CASE WHEN comments.is_delete THEN '**balasan telah dihapus**'
-                   ELSE comments.content
-              END
+      text: `SELECT comments.id, users.username, comments.date, comments.content, comments.is_delete as isdeleted
               FROM comments
               JOIN users ON comments.owner_id = users.id
               WHERE thread_id = $1 AND reply_to = $2

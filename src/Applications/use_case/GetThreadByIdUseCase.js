@@ -1,3 +1,4 @@
+const Comment = require('../../Domains/comments/entities/Comment');
 /**
  * GetThreadByIdUseCase
  */
@@ -20,11 +21,12 @@ class GetThreadByIdUseCase {
     const {threadId} = useCasePayload;
     const thread = await this._threadRepository.getThreadById(threadId);
     const comments = await this._commentRepository.getCommentsByThreadId(threadId);
-    for (const comment of comments) {
+    const mappedComments = comments.map((comment) => new Comment({...comment, isReply: false}));
+    for (const comment of mappedComments) {
       const replies = await this._commentRepository.getReplies(threadId, comment.id);
-      comment.replies = replies;
+      comment.replies = replies.map((reply) => new Comment({...reply, isReply: true}));
     }
-    thread.comments = comments;
+    thread.comments = mappedComments;
     return thread;
   }
 }
