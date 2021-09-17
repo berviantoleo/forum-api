@@ -7,6 +7,7 @@ const container = require('../../container');
 const createServer = require('../createServer');
 const ServerTestHelper = require('../../../../tests/ServerTestHelper');
 const CommentsTableTestHelper = require('../../../../tests/CommentsTableTestHelper');
+const CommentLikeTableTestHelper = require('../../../../tests/CommentLikeTableTestHelper');
 
 describe('/threads endpoint', () => {
   afterAll(async () => {
@@ -196,6 +197,35 @@ describe('/threads endpoint', () => {
       expect(responseJson.data.thread.id).toContain('thread-');
       expect(responseJson.data.thread.comments).toBeDefined();
       expect(responseJson.data.thread.comments[0].content).toEqual('**komentar telah dihapus**');
+    });
+
+    it('should have likeCount and bring the calculation correctly', async () => {
+      // Arrange
+      const threadId = 'thread-12345';
+      const userId = 'user-123333';
+      const threadTitle = 'title is good';
+      const commentId = 'comment-1999';
+      await ServerTestHelper.getAccessToken(userId); // just create user
+      await ThreadsTableTestHelper.addThread({id: threadId, title: threadTitle, userId});
+      await CommentsTableTestHelper.addComment({id: commentId, threadId, userId});
+      await CommentLikeTableTestHelper.addLike({commentId, userId});
+      const server = await createServer(container);
+
+      // Action
+      const response = await server.inject({
+        method: 'GET',
+        url: `/threads/${threadId}`,
+      });
+
+      // Assert
+      const responseJson = JSON.parse(response.payload);
+      expect(response.statusCode).toEqual(200);
+      expect(responseJson.status).toEqual('success');
+      expect(responseJson.data.thread).toBeDefined();
+      expect(responseJson.data.thread.title).toEqual(threadTitle);
+      expect(responseJson.data.thread.id).toContain('thread-');
+      expect(responseJson.data.thread.comments).toBeDefined();
+      expect(responseJson.data.thread.comments[0].likeCount).toEqual(1);
     });
   });
 });

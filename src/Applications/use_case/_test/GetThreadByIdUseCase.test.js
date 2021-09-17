@@ -39,6 +39,7 @@ describe('GetThreadByIdUseCase', () => {
         .mockImplementation(() => Promise.resolve(expectedComments));
     mockCommentRepository.getReplies = jest.fn()
         .mockImplementation(() => Promise.resolve([]));
+    mockCommentRepository.countLikes = jest.fn(() => Promise.resolve(5));
     /** creating use case instance */
     const getThreadUseCase = new GetThreadByIdUseCase({
       threadRepository: mockThreadRepository,
@@ -98,6 +99,7 @@ describe('GetThreadByIdUseCase', () => {
         .mockImplementation(() => Promise.resolve(expectedComments));
     mockCommentRepository.getReplies = jest.fn()
         .mockImplementation(() => Promise.resolve(expectedReplies));
+    mockCommentRepository.countLikes = jest.fn(() => Promise.resolve(5));
     /** creating use case instance */
     const getThreadUseCase = new GetThreadByIdUseCase({
       threadRepository: mockThreadRepository,
@@ -110,5 +112,6 @@ describe('GetThreadByIdUseCase', () => {
     // Assert
     expect(existingThread).toStrictEqual(expectedExistingThread);
     expect(mockThreadRepository.getThreadById).toBeCalledWith(useCasePayload.threadId);
+    expect(mockCommentRepository.countLikes).toBeCalledWith(expectedComments[0].id);
   });
 });

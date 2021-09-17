@@ -1,5 +1,6 @@
 const AddCommentUseCase = require('../../../../Applications/use_case/AddCommentUseCase');
 const DeleteCommentUseCase = require('../../../../Applications/use_case/DeleteCommentUseCase');
+const LikeCommentUseCase = require('../../../../Applications/use_case/LikeCommentUseCase');
 
 /**
  * CommentsHandler Class
@@ -14,6 +15,7 @@ class CommentsHandler {
 
     this.postCommentHandler = this.postCommentHandler.bind(this);
     this.deleteCommentHandler = this.deleteCommentHandler.bind(this);
+    this.likeCommentHandler = this.likeCommentHandler.bind(this);
   }
 
   /**
@@ -51,6 +53,24 @@ class CommentsHandler {
     const deleteCommentUseCase = this._container.getInstance(DeleteCommentUseCase.name);
     const deletePayload = {userId, threadId, commentId};
     await deleteCommentUseCase.execute(deletePayload);
+
+    return {
+      status: 'success',
+    };
+  }
+
+  /**
+   * Like Comment Handler
+   * @param {*} request Hapi Request
+   * @param {*} h Hapi Response Toolkit
+   * @return {*} Hapi Response
+   */
+  async likeCommentHandler(request, h) {
+    const {id: userId} = request.auth.credentials;
+    const {threadId, commentId} = request.params;
+    const likeCommentUseCase = this._container.getInstance(LikeCommentUseCase.name);
+    const likePayload = {userId, threadId, commentId};
+    await likeCommentUseCase.execute(likePayload);
 
     return {
       status: 'success',

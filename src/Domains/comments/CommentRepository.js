@@ -53,6 +53,41 @@ class CommentRepository {
   }
 
   /**
+   * isAlreadyLiked by Id
+   * @param {string} id Comment Id
+   * @param {string} userId User Id
+   */
+  async isAlreadyLiked(id, userId) {
+    throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  }
+
+  /**
+   * unlikeComment by Id
+   * @param {string} id Comment Id
+   * @param {string} userId User Id
+   */
+  async unlikeComment(id, userId) {
+    throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  }
+
+  /**
+   * likeComment by Id
+   * @param {string} id Comment Id
+   * @param {string} userId User Id
+   */
+  async likeComment(id, userId) {
+    throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  }
+
+  /**
+   * countLikes by Id
+   * @param {string} id Comment Id
+   */
+  async countLikes(id) {
+    throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+  }
+
+  /**
    * Delete Comment by Id
    * @param {string} id Id
    */

@@ -25,6 +25,8 @@ class GetThreadByIdUseCase {
     for (const comment of mappedComments) {
       const replies = await this._commentRepository.getReplies(threadId, comment.id);
       comment.replies = replies.map((reply) => new Comment({...reply, isReply: true}));
+      const totalLikes = await this._commentRepository.countLikes(comment.id);
+      comment.likeCount = totalLikes;
     }
     thread.comments = mappedComments;
     return thread;
