@@ -156,6 +156,6 @@ jobs:
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         service: forum-api-service
-        cluster: forum-api-cluster
+        cluster: forum-api
         wait-for-service-stability: true
       
