@@ -49,7 +49,7 @@ describe('DeleteCommentUseCase', () => {
     };
 
     /** creating dependency of use case */
-    const mockThreadRepository = new ThreadRepository(); useCasePayload.userId;
+    const mockThreadRepository = new ThreadRepository();
     const mockCommentRepository = new CommentRepository();
 
     /** mocking needed function */
