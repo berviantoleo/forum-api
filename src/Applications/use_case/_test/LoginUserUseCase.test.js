@@ -24,16 +24,14 @@ describe('GetAuthenticationUseCase', () => {
     // Mocking
     mockUserRepository.getPasswordByUsername = jest.fn()
         .mockImplementation(() => Promise.resolve('encrypted_password'));
-    mockPasswordHash.comparePassword = jest.fn()
-        .mockImplementation(() => Promise.resolve());
+    mockPasswordHash.comparePassword = jest.fn(() => Promise.resolve());
     mockAuthenticationTokenManager.createAccessToken = jest.fn()
         .mockImplementation(() => Promise.resolve(expectedAuthentication.accessToken));
     mockAuthenticationTokenManager.createRefreshToken = jest.fn()
         .mockImplementation(() => Promise.resolve(expectedAuthentication.refreshToken));
     mockUserRepository.getIdByUsername = jest.fn()
         .mockImplementation(() => Promise.resolve('user-123'));
-    mockAuthenticationRepository.addToken = jest.fn()
-        .mockImplementation(() => Promise.resolve());
+    mockAuthenticationRepository.addToken = jest.fn(() => Promise.resolve());
 
     // create use case instance
     const loginUserUseCase = new LoginUserUseCase({
