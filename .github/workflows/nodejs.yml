@@ -1,17 +1,11 @@
 
 name: Node CI
 on:
-  push:
-    # Publish `master` as Docker `latest` image.
-    branches:
-      - master
-    # Publish `v1.2.3` tags as releases.
-    tags:
-      - v*
   # Run tests for any PRs.
   pull_request:
+    branches:
+      - master
 env:
-  IMAGE_NAME: forum-api
   PGHOST_TEST: localhost
   PGUSER_TEST: postgres
   PGDATABASE_TEST: forumapi_test
@@ -87,54 +81,3 @@ jobs:
     #  with:
     #    branch: gh-pages # The branch the action should deploy to.
     #    folder: docs # The folder the action should deploy.
-  docker-push:
-    # Ensure test job passes before pushing image.
-    needs: build
-    runs-on: ubuntu-20.04
-    if: github.event_name == 'push'
-    steps:
-    - uses: actions/checkout@v2
-    - name: Login to Docker Hub
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_TOKEN }}
-    - name: Log in to the Container registry
-      uses: docker/login-action@v1
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-    - name: Extract metadata (tags, labels) for Docker
-      id: meta
-      uses: docker/metadata-action@v3
-      with:
-        images: |
-          berviantoleo/${{ env.IMAGE_NAME }}
-          ghcr.io/${{ github.repository }}
-    - name: Build and push Docker images
-      uses: docker/build-push-action@v2
-      with:
-        context: .
-        push: true
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
-  deploy-ssh:
-    needs: build
-    runs-on: ubuntu-20.04
-    if: github.event_name == 'push'
-    steps:
-    - name: SSH and deploy app
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        port: ${{ secrets.SSH_PORT }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        script: |
-          cd ~/forum-api
-          git pull origin master
-          yarn
-          yarn migrate up
-          pm2 restart forum-api
