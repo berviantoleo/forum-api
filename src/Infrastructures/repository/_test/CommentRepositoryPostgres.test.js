@@ -7,9 +7,11 @@ const pool = require('../../database/postgres/pool');
 const CommentRepositoryPostgres = require('../CommentRepositoryPostgres');
 const NotFoundError = require('../../../Commons/exceptions/NotFoundError');
 const NewReply = require('../../../Domains/comments/entities/NewReply');
+const CommentLikeTableTestHelper = require('../../../../tests/CommentLikeTableTestHelper');
 
 describe('CommentRepositoryPostgres', () => {
   afterEach(async () => {
+    await CommentLikeTableTestHelper.cleanTable();
     await CommentsTableTestHelper.cleanTable();
     await ThreadsTableTestHelper.cleanTable();
     await UserTableTestHelper.cleanTable();
@@ -200,6 +202,106 @@ describe('CommentRepositoryPostgres', () => {
       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
 
       await expect(commentRepositoryPostgres.deleteComment('unknown-comment')).rejects.toThrow(NotFoundError);
+    });
+  });
+
+  describe('isAlreadyLiked function', () => {
+    it('should return true when already liked', async () => {
+      // Arrange
+      const userId = 'user-1234567890000';
+      const threadId = 'thread-1234567899';
+      const commentId = 'comment-123888888';
+      await UserTableTestHelper.addUser({id: userId, username: 'threadusernew'});
+      await ThreadsTableTestHelper.addThread({id: threadId, title: 'thread-everything', body: 'it is ok', userId: userId});
+      await CommentsTableTestHelper.addComment({id: commentId, content: 'Hello 12134', threadId: threadId, userId: userId});
+      await CommentLikeTableTestHelper.addLike({commentId: commentId, userId: userId});
+      const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
+
+      // Action
+      const alreadyLiked = await commentRepositoryPostgres.isAlreadyLiked(commentId, userId);
+
+      // Assert
+      expect(alreadyLiked).toBe(true);
+    });
+
+    it('should return false when never like', async () => {
+      // Arrange
+      const userId = 'user-1234567890000';
+      const threadId = 'thread-1234567899';
+      const commentId = 'comment-123888888';
+      await UserTableTestHelper.addUser({id: userId, username: 'threadusernew'});
+      await ThreadsTableTestHelper.addThread({id: threadId, title: 'thread-everything', body: 'it is ok', userId: userId});
+      await CommentsTableTestHelper.addComment({id: commentId, content: 'Hello 12134', threadId: threadId, userId: userId});
+      const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
+
+      // Action
+      const alreadyLiked = await commentRepositoryPostgres.isAlreadyLiked(commentId, userId);
+
+      // Assert
+      expect(alreadyLiked).toBe(false);
+    });
+  });
+
+  describe('unlikeComment function', () => {
+    it('should persist to comment_likes table', async () => {
+      // Arrange
+      const userId = 'user-1234567890000';
+      const threadId = 'thread-1234567899';
+      const commentId = 'comment-123888888';
+      await UserTableTestHelper.addUser({id: userId, username: 'threadusernew'});
+      await ThreadsTableTestHelper.addThread({id: threadId, title: 'thread-everything', body: 'it is ok', userId: userId});
+      await CommentsTableTestHelper.addComment({id: commentId, content: 'Hello 12134', threadId: threadId, userId: userId});
+      await CommentLikeTableTestHelper.addLike({commentId: commentId, userId: userId});
+      const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
+
+      // Action
+      await commentRepositoryPostgres.unlikeComment(commentId, userId);
+
+      // Assert
+      const likes = await CommentLikeTableTestHelper.findLikes({commentId, userId});
+      expect(likes).toHaveLength(0);
+    });
+  });
+
+  describe('likeComment function', () => {
+    it('should persist to comment_likes table', async () => {
+      // Arrange
+      const userId = 'user-1234567890000';
+      const threadId = 'thread-1234567899';
+      const commentId = 'comment-123888888';
+      await UserTableTestHelper.addUser({id: userId, username: 'threadusernew'});
+      await ThreadsTableTestHelper.addThread({id: threadId, title: 'thread-everything', body: 'it is ok', userId: userId});
+      await CommentsTableTestHelper.addComment({id: commentId, content: 'Hello 12134', threadId: threadId, userId: userId});
+      const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
+
+      // Action
+      await commentRepositoryPostgres.likeComment(commentId, userId);
+
+      // Assert
+      const likes = await CommentLikeTableTestHelper.findLikes({commentId, userId});
+      expect(likes).toHaveLength(1);
+      expect(likes[0].commentId).toEqual(commentId);
+      expect(likes[0].userId).toEqual(userId);
+    });
+  });
+
+  describe('countLikes function', () => {
+    it('should count likes correctly', async () => {
+      // Arrange
+      const userId = 'user-1234567890000';
+      const threadId = 'thread-1234567899';
+      const commentId = 'comment-123888888';
+      await UserTableTestHelper.addUser({id: userId, username: 'threadusernew'});
+      await ThreadsTableTestHelper.addThread({id: threadId, title: 'thread-everything', body: 'it is ok', userId: userId});
+      await CommentsTableTestHelper.addComment({id: commentId, content: 'Hello 12134', threadId: threadId, userId: userId});
+      await CommentLikeTableTestHelper.addLike({commentId, userId});
+      const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
+
+      // Action
+      const totalData = await commentRepositoryPostgres.countLikes(commentId);
+
+      // Assert
+      expect(totalData).toEqual(1);
     });
   });
 });

@@ -132,7 +132,6 @@ class CommentRepositoryPostgres extends CommentRepository {
     }
   }
 
-
   /**
    * Delete Comment by Id
    * @param {string} id Id
@@ -150,6 +149,67 @@ class CommentRepositoryPostgres extends CommentRepository {
     if (!result.rowCount) {
       throw new NotFoundError('comment tidak ditemukan');
     }
+  }
+
+  /**
+   * isAlreadyLiked by Id
+   * @param {string} id Comment Id
+   * @param {string} userId User Id
+   */
+  async isAlreadyLiked(id, userId) {
+    const query = {
+      text: `SELECT id FROM comment_likes
+            WHERE comment_id = $1 AND user_id = $2`,
+      values: [id, userId],
+    };
+
+    const result = await this._pool.query(query);
+
+    return !!result.rowCount;
+  }
+
+  /**
+   * unlikeComment by Id
+   * @param {string} id Comment Id
+   * @param {string} userId User Id
+   */
+  async unlikeComment(id, userId) {
+    const query = {
+      text: `DELETE FROM comment_likes
+            WHERE comment_id = $1 AND user_id = $2`,
+      values: [id, userId],
+    };
+
+    await this._pool.query(query);
+  }
+
+  /**
+   * likeComment by Id
+   * @param {string} id Comment Id
+   * @param {string} userId User Id
+   */
+  async likeComment(id, userId) {
+    const query = {
+      text: `INSERT INTO comment_likes (comment_id, user_id) VALUES ($1, $2) RETURNING id`,
+      values: [id, userId],
+    };
+
+    await this._pool.query(query);
+  }
+
+  /**
+   * countLikes by Id
+   * @param {string} id Comment Id
+   */
+  async countLikes(id) {
+    const query = {
+      text: `SELECT COUNT(*) as total FROM comment_likes
+            WHERE comment_id = $1`,
+      values: [id],
+    };
+
+    const result = await this._pool.query(query);
+    return parseInt(result.rows[0].total);
   }
 }
 
