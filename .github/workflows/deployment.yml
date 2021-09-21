@@ -42,21 +42,3 @@ jobs:
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
-  deploy-ssh:
-    runs-on: ubuntu-20.04
-    if: github.event_name == 'push'
-    steps:
-    - name: SSH and deploy app
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        port: ${{ secrets.SSH_PORT }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        script: |
-          cd ~/forum-api
-          git pull origin master
-          yarn
-          yarn migrate up
-          pm2 restart forum-api
