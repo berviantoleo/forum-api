@@ -24,7 +24,7 @@
   "author": "Bervianto Leo Pratama",
   "license": "MIT",
   "dependencies": {
-    "@hapi/hapi": "^20.1.5",
+    "@hapi/hapi": "^20.2.1",
     "@hapi/jwt": "^2.1.0",
     "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
