@@ -40,6 +40,6 @@
     "jest": "^27.0.6",
     "jsdoc": "^3.6.7",
     "node-pg-migrate": "^5.10.0",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.15"
   }
 }
