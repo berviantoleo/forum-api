@@ -2374,10 +2374,10 @@ ini@~1.3.0:
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.8.tgz#a29da425b48806f34767a4efce397269af28432c"
   integrity sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==
 
-instances-container@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/instances-container/-/instances-container-2.0.3.tgz#975f4adf3580a19d76d574c9464297d7a5391c6b"
-  integrity sha512-mr8qWA0cB/ZZ0NStRZdlf711/i4VG3xUvrs7+TZfHHvCiGpPrionWeh//Wb4xJo5HUi5S1ndhqDPZEjMoBWhjQ==
+instances-container@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/instances-container/-/instances-container-2.0.4.tgz#6f0ab7b4c8ac4c0840ca3a7fa786b490a6d5dfce"
+  integrity sha512-2LnbolE7GJpIWKHgy+kopoEtZM5+hvR0Uretq9uAAC3l3bjduIEfD2/V6xuUGq7vCMxL/DxasRhorHKaj7ErfQ==
 
 internal-slot@^1.0.3:
   version "1.0.3"
