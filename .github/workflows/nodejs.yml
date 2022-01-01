@@ -4,7 +4,7 @@ on:
   # Run tests for any PRs.
   pull_request:
     branches:
-      - master
+      - main
 env:
   PGHOST_TEST: localhost
   PGUSER_TEST: postgres
