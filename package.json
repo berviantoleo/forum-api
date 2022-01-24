@@ -27,7 +27,7 @@
     "@hapi/hapi": "^20.2.1",
     "@hapi/jwt": "^2.1.0",
     "bcrypt": "^5.0.1",
-    "dotenv": "^13.0.1",
+    "dotenv": "^14.2.0",
     "instances-container": "^2.0.5",
     "nanoid": "^3.2.0",
     "pg": "^8.7.1"
