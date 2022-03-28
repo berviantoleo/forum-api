@@ -639,10 +639,10 @@
     "@hapi/cryptiles" "5.x.x"
     "@hapi/hoek" "9.x.x"
 
-"@hapi/jwt@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@hapi/jwt/-/jwt-2.1.0.tgz#8c6d28ed36667576369470eddda89d70aa48235a"
-  integrity sha512-txyYo6QqC9ZtuVQSeRnfKW1mDZzFEQfwL1UkVFj6i/tdy+pKKbsWQkw+g6Vi/4yio789WwKCNLpM3AgTFESFpQ==
+"@hapi/jwt@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@hapi/jwt/-/jwt-2.1.1.tgz#11200d7c4e4c4e160f5458bc0402f36fdc976f4c"
+  integrity sha512-Gti45hxxT0g9oAwvIdl5Sotn6qLyhgVS0bawWyT8a3hjfzhiB0daAedRpwOSlNG0CUs1MjhkyI2E2eN8y7tf2g==
   dependencies:
     "@hapi/b64" "5.x.x"
     "@hapi/boom" "9.x.x"
