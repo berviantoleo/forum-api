@@ -39,7 +39,7 @@
     "eslint-plugin-import": "^2.26.0",
     "jest": "^28.1.2",
     "jsdoc": "^3.6.10",
-    "node-pg-migrate": "^6.2.1",
+    "node-pg-migrate": "^6.2.2",
     "nodemon": "^2.0.18"
   }
 }
