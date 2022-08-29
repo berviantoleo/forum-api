@@ -30,7 +30,7 @@
     "dotenv": "^16.0.1",
     "instances-container": "^2.0.6",
     "nanoid": "^3.3.4",
-    "pg": "^8.7.3"
+    "pg": "^8.8.0"
   },
   "devDependencies": {
     "@types/jest": "^28.1.7",
