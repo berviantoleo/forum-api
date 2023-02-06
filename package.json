@@ -25,7 +25,7 @@
   "license": "MIT",
   "dependencies": {
     "@hapi/hapi": "^21.2.0",
-    "@hapi/jwt": "^3.0.0",
+    "@hapi/jwt": "^3.1.0",
     "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
     "instances-container": "^2.0.6",
