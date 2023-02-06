@@ -615,10 +615,10 @@
   resolved "https://registry.yarnpkg.com/@hapi/file/-/file-3.0.0.tgz#f1fd824493ac89a6fceaf89c824afc5ae2121c09"
   integrity sha512-w+lKW+yRrLhJu620jT3y+5g2mHqnKfepreykvdOcl9/6up8GrQQn+l3FRTsjHTKbkbfQFkuksHpdv2EcpKcJ4Q==
 
-"@hapi/hapi@^21.2.0":
-  version "21.2.0"
-  resolved "https://registry.yarnpkg.com/@hapi/hapi/-/hapi-21.2.0.tgz#08ebd355c8e6bb8b31a887412c4a98be70f35c80"
-  integrity sha512-lhidm5B2y+4cgmI9BL0xDNDJJDcHaCUUUJk8FOSuTf61JvK5HSq6zEqdAjTD+RVePpItCMLv8ZzRrdCan0Zoqw==
+"@hapi/hapi@^21.2.1":
+  version "21.2.1"
+  resolved "https://registry.yarnpkg.com/@hapi/hapi/-/hapi-21.2.1.tgz#0a729e4a6dd60a7277252ea82bfe6671df379953"
+  integrity sha512-mDBhIi/zIYhWPaZF4Z8h7jUtWC3bz7xYuUyI5riXZV9DabFnNOKpQfOob6V5ZcDwEJfmnWHgJO37BVCn31BStQ==
   dependencies:
     "@hapi/accept" "^6.0.0"
     "@hapi/ammo" "^6.0.0"
