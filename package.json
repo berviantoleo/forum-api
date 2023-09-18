@@ -33,11 +33,11 @@
     "pg": "^8.11.3"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.4",
+    "@types/jest": "^29.5.5",
     "eslint": "^8.49.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "^2.28.1",
-    "jest": "^29.6.4",
+    "jest": "^29.7.0",
     "jsdoc": "^4.0.2",
     "node-pg-migrate": "^6.2.2",
     "nodemon": "^3.0.1"
