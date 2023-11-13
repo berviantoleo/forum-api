@@ -33,7 +33,7 @@
     "pg": "^8.11.3"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.7",
+    "@types/jest": "^29.5.8",
     "eslint": "^8.52.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "^2.29.0",
