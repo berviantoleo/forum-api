@@ -19,7 +19,7 @@ jobs:
       # Label used to access the service container
       postgres:
         # Docker Hub image
-        image: postgres:13-alpine
+        image: postgres:16-alpine
         # Provide the password for postgres
         env:
           POSTGRES_PASSWORD: devsecretpassword
@@ -35,7 +35,7 @@ jobs:
           - 5432:5432
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [20.x, 22.x]
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
@@ -58,7 +58,7 @@ jobs:
         PORT: 5000
     - name: Codecov
       uses: codecov/codecov-action@v4
-      if: ${{ matrix.node-version == '18.x'}}
+      if: ${{ matrix.node-version == '20.x'}}
     #- name: Run use pm2
     #  run: |
     #    npm install pm2@latest -g
