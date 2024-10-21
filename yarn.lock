@@ -3877,10 +3877,10 @@ node-int64@^0.4.0:
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
   integrity sha1-h6kGXNs1XTGC2PlM4RGIuCXGijs=
 
-node-pg-migrate@^7.7.0:
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/node-pg-migrate/-/node-pg-migrate-7.7.0.tgz#7fe74bd829d7d952dd5ba9d912d2e5fe2fbe14e6"
-  integrity sha512-TUkdiy1YIofPKX5/kOBdKrmOcABngOJvnN/NWlWq2as86uU5v1kmL5zfqmjeuTAClZk7Rn4EXA2V06b4zcrk7w==
+node-pg-migrate@^7.7.1:
+  version "7.7.1"
+  resolved "https://registry.yarnpkg.com/node-pg-migrate/-/node-pg-migrate-7.7.1.tgz#56fa7981eb98cdb61de3aab2e9c5140fa5de0075"
+  integrity sha512-wi+zKn+sBWqFUKnViPxHbnriZpGmUJQDhfN06URffYVPBIqS9quuqIfb8wbahiiJIPYWlOluJ18wsWPMYGM7Cg==
   dependencies:
     glob "11.0.0"
     yargs "~17.7.0"
