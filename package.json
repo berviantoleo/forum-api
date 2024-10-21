@@ -38,7 +38,7 @@
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "^2.31.0",
     "jest": "^29.7.0",
-    "jsdoc": "^4.0.3",
+    "jsdoc": "^4.0.4",
     "node-pg-migrate": "^7.7.0",
     "nodemon": "^3.1.7"
   }
