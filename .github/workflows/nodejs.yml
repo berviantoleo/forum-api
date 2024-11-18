@@ -57,7 +57,7 @@ jobs:
         HOST: localhost
         PORT: 5000
     - name: Codecov
-      uses: codecov/codecov-action@v4
+      uses: codecov/codecov-action@v5
       if: ${{ matrix.node-version == '20.x'}}
     #- name: Run use pm2
     #  run: |
