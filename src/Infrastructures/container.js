@@ -3,7 +3,7 @@
 const {createContainer} = require('instances-container');
 
 // external agency
-const {nanoid} = require('nanoid');
+const { v7: uuidv7 } = require('uuid');
 const bcrypt = require('bcrypt');
 const Jwt = require('@hapi/jwt');
 const pool = require('./database/postgres/pool');
@@ -51,7 +51,7 @@ container.register([
           concrete: pool,
         },
         {
-          concrete: nanoid,
+          concrete: uuidv7,
         },
       ],
     },
@@ -98,7 +98,7 @@ container.register([
           concrete: pool,
         },
         {
-          concrete: nanoid,
+          concrete: uuidv7,
         },
       ],
     },
@@ -112,7 +112,7 @@ container.register([
           concrete: pool,
         },
         {
-          concrete: nanoid,
+          concrete: uuidv7,
         },
       ],
     },
