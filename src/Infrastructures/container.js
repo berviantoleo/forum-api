@@ -3,7 +3,7 @@
 const {createContainer} = require('instances-container');
 
 // external agency
-const { v7: uuidv7 } = require('uuid');
+const {v7: uuidv7} = require('uuid');
 const bcrypt = require('bcrypt');
 const Jwt = require('@hapi/jwt');
 const pool = require('./database/postgres/pool');
