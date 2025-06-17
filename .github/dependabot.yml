@@ -11,6 +11,10 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      jest:
+        patterns:
+          - "*jest*"
  
   - package-ecosystem: "docker"
     directory: "/"
