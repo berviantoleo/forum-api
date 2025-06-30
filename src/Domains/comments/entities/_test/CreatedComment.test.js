@@ -8,7 +8,7 @@ describe('a CreatedComment entities', () => {
     };
 
     // Action and Assert
-    expect(() => new CreatedComment(payload)).toThrowError(
+    expect(() => new CreatedComment(payload)).toThrow(
         'CREATED_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY',
     );
   });
@@ -22,7 +22,7 @@ describe('a CreatedComment entities', () => {
     };
 
     // Action and Assert
-    expect(() => new CreatedComment(payload)).toThrowError(
+    expect(() => new CreatedComment(payload)).toThrow(
         'CREATED_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION',
     );
   });
