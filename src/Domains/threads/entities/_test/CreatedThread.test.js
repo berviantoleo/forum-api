@@ -9,7 +9,7 @@ describe('a CreatedThread entities', () => {
     };
 
     // Action and Assert
-    expect(() => new CreatedThread(payload)).toThrowError(
+    expect(() => new CreatedThread(payload)).toThrow(
         'CREATED_THREAD.NOT_CONTAIN_NEEDED_PROPERTY',
     );
   });
@@ -24,7 +24,7 @@ describe('a CreatedThread entities', () => {
         };
 
         // Action and Assert
-        expect(() => new CreatedThread(payload)).toThrowError(
+        expect(() => new CreatedThread(payload)).toThrow(
             'CREATED_THREAD.NOT_MEET_DATA_TYPE_SPECIFICATION',
         );
       });
