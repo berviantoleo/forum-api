@@ -24,7 +24,7 @@ describe('a RegisterUser entities', () => {
 
         // Action and Assert
         expect(() => new RegisterUser(payload)).
-            toThrowError('REGISTER_USER.NOT_MEET_DATA_TYPE_SPECIFICATION');
+            toThrow('REGISTER_USER.NOT_MEET_DATA_TYPE_SPECIFICATION');
       });
 
   it('should throw error when username contains more than 50 character', () => {
