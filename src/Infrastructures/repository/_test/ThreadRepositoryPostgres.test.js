@@ -91,7 +91,7 @@ describe('ThreadRepositoryPostgres', () => {
       const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
 
       // Action & Assert
-      await expect(threadRepositoryPostgres.verifyThreadExist('thread-xxxxx')).rejects.toThrowError(NotFoundError);
+      await expect(threadRepositoryPostgres.verifyThreadExist('thread-xxxxx')).rejects.toThrow(NotFoundError);
     });
 
     it('should not return exception when found', async () => {
