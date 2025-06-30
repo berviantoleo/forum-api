@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
-    "eslint": "^8.57.1",
+    "eslint": "^9.30.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "^2.32.0",
     "jest": "^30.0.3",
