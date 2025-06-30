@@ -52,13 +52,13 @@ describe('RefreshAuthenticationUseCase', () => {
 
     // Assert
     expect(mockAuthenticationTokenManager.verifyRefreshToken)
-        .toBeCalledWith(useCasePayload.refreshToken);
+        .toHaveBeenCalledWith(useCasePayload.refreshToken);
     expect(mockAuthenticationRepository.checkAvailabilityToken)
-        .toBeCalledWith(useCasePayload.refreshToken);
+        .toHaveBeenCalledWith(useCasePayload.refreshToken);
     expect(mockAuthenticationTokenManager.decodePayload)
-        .toBeCalledWith(useCasePayload.refreshToken);
+        .toHaveBeenCalledWith(useCasePayload.refreshToken);
     expect(mockAuthenticationTokenManager.createAccessToken)
-        .toBeCalledWith({username: 'dicoding', id: 'user-123'});
+        .toHaveBeenCalledWith({username: 'dicoding', id: 'user-123'});
     expect(accessToken).toEqual('some_new_access_token');
   });
 });
