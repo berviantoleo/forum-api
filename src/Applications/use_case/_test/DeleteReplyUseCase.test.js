@@ -38,10 +38,10 @@ describe('DeleteReplyUseCase', () => {
 
     // Assert
     await expect(deleteReplyUseCase.execute(useCasePayload)).resolves.not.toThrow();
-    expect(mockThreadRepository.verifyThreadExist).toBeCalledWith(useCasePayload.threadId);
-    expect(mockCommentRepository.verifyCommentExist).toBeCalledWith(useCasePayload.commentId);
-    expect(mockCommentRepository.getCommentById).toBeCalledWith(useCasePayload.replyId);
-    expect(mockCommentRepository.deleteComment).toBeCalledWith(useCasePayload.replyId);
+    expect(mockThreadRepository.verifyThreadExist).toHaveBeenCalledWith(useCasePayload.threadId);
+    expect(mockCommentRepository.verifyCommentExist).toHaveBeenCalledWith(useCasePayload.commentId);
+    expect(mockCommentRepository.getCommentById).toHaveBeenCalledWith(useCasePayload.replyId);
+    expect(mockCommentRepository.deleteComment).toHaveBeenCalledWith(useCasePayload.replyId);
   });
 
   it('should throw authorization error when different owner', async () => {
@@ -72,9 +72,9 @@ describe('DeleteReplyUseCase', () => {
 
     // Assert
     await expect(deleteReplyUseCase.execute(useCasePayload)).rejects.toThrow(AuthorizationError);
-    expect(mockThreadRepository.verifyThreadExist).toBeCalledWith(useCasePayload.threadId);
-    expect(mockCommentRepository.verifyCommentExist).toBeCalledWith(useCasePayload.commentId);
-    expect(mockCommentRepository.getCommentById).toBeCalledWith(useCasePayload.replyId);
-    expect(mockCommentRepository.deleteComment).not.toBeCalled();
+    expect(mockThreadRepository.verifyThreadExist).toHaveBeenCalledWith(useCasePayload.threadId);
+    expect(mockCommentRepository.verifyCommentExist).toHaveBeenCalledWith(useCasePayload.commentId);
+    expect(mockCommentRepository.getCommentById).toHaveBeenCalledWith(useCasePayload.replyId);
+    expect(mockCommentRepository.deleteComment).not.toHaveBeenCalled();
   });
 });

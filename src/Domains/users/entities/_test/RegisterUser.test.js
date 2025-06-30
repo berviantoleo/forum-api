@@ -10,7 +10,7 @@ describe('a RegisterUser entities', () => {
 
     // Action and Assert
     expect(() => new RegisterUser(payload)).
-        toThrowError('REGISTER_USER.NOT_CONTAIN_NEEDED_PROPERTY');
+        toThrow('REGISTER_USER.NOT_CONTAIN_NEEDED_PROPERTY');
   });
 
   it('should throw error when payload did not meet data type specification',
@@ -24,7 +24,7 @@ describe('a RegisterUser entities', () => {
 
         // Action and Assert
         expect(() => new RegisterUser(payload)).
-            toThrowError('REGISTER_USER.NOT_MEET_DATA_TYPE_SPECIFICATION');
+            toThrow('REGISTER_USER.NOT_MEET_DATA_TYPE_SPECIFICATION');
       });
 
   it('should throw error when username contains more than 50 character', () => {
@@ -37,7 +37,7 @@ describe('a RegisterUser entities', () => {
 
     // Action and Assert
     expect(() => new RegisterUser(payload)).
-        toThrowError('REGISTER_USER.USERNAME_LIMIT_CHAR');
+        toThrow('REGISTER_USER.USERNAME_LIMIT_CHAR');
   });
 
   it('should throw error when username contains restricted character', () => {
@@ -50,7 +50,7 @@ describe('a RegisterUser entities', () => {
 
     // Action and Assert
     expect(() => new RegisterUser(payload)).
-        toThrowError('REGISTER_USER.USERNAME_CONTAIN_RESTRICTED_CHARACTER');
+        toThrow('REGISTER_USER.USERNAME_CONTAIN_RESTRICTED_CHARACTER');
   });
 
   it('should create registerUser object correctly', () => {

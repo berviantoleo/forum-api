@@ -8,7 +8,7 @@ describe('NewAuth entities', () => {
     };
 
     // Action & Assert
-    expect(() => new NewAuth(payload)).toThrowError('NEW_AUTH.NOT_CONTAIN_NEEDED_PROPERTY');
+    expect(() => new NewAuth(payload)).toThrow('NEW_AUTH.NOT_CONTAIN_NEEDED_PROPERTY');
   });
 
   it('should throw error when payload not meet data type specification', () => {
@@ -19,7 +19,7 @@ describe('NewAuth entities', () => {
     };
 
     // Action & Assert
-    expect(() => new NewAuth(payload)).toThrowError('NEW_AUTH.NOT_MEET_DATA_TYPE_SPECIFICATION');
+    expect(() => new NewAuth(payload)).toThrow('NEW_AUTH.NOT_MEET_DATA_TYPE_SPECIFICATION');
   });
 
   it('should create NewAuth entities correctly', () => {

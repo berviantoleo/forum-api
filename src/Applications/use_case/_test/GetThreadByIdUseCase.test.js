@@ -51,7 +51,7 @@ describe('GetThreadByIdUseCase', () => {
 
     // Assert
     expect(existingThread).toStrictEqual(expectedExistingThread);
-    expect(mockThreadRepository.getThreadById).toBeCalledWith(useCasePayload.threadId);
+    expect(mockThreadRepository.getThreadById).toHaveBeenCalledWith(useCasePayload.threadId);
   });
 
   /**
@@ -111,7 +111,7 @@ describe('GetThreadByIdUseCase', () => {
 
     // Assert
     expect(existingThread).toStrictEqual(expectedExistingThread);
-    expect(mockThreadRepository.getThreadById).toBeCalledWith(useCasePayload.threadId);
-    expect(mockCommentRepository.countLikes).toBeCalledWith(expectedComments[0].id);
+    expect(mockThreadRepository.getThreadById).toHaveBeenCalledWith(useCasePayload.threadId);
+    expect(mockCommentRepository.countLikes).toHaveBeenCalledWith(expectedComments[0].id);
   });
 });

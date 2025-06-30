@@ -6,13 +6,13 @@ describe('AuthenticationRepository interface', () => {
     const authenticationRepository = new AuthenticationRepository();
 
     // Action & Assert
-    await expect(authenticationRepository.addToken('')).rejects.toThrowError(
+    await expect(authenticationRepository.addToken('')).rejects.toThrow(
         'AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED',
     );
     await expect(
         authenticationRepository.checkAvailabilityToken(''),
-    ).rejects.toThrowError('AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED');
-    await expect(authenticationRepository.deleteToken('')).rejects.toThrowError(
+    ).rejects.toThrow('AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+    await expect(authenticationRepository.deleteToken('')).rejects.toThrow(
         'AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED',
     );
   });

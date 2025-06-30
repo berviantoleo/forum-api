@@ -8,7 +8,7 @@ describe('a NewThread entities', () => {
     };
 
     // Action and Assert
-    expect(() => new NewThread(payload)).toThrowError(
+    expect(() => new NewThread(payload)).toThrow(
         'NEW_THREAD.NOT_CONTAIN_NEEDED_PROPERTY',
     );
   });
@@ -22,7 +22,7 @@ describe('a NewThread entities', () => {
     };
 
     // Action and Assert
-    expect(() => new NewThread(payload)).toThrowError(
+    expect(() => new NewThread(payload)).toThrow(
         'NEW_THREAD.NOT_MEET_DATA_TYPE_SPECIFICATION',
     );
   });
@@ -40,7 +40,7 @@ describe('a NewThread entities', () => {
     };
 
     // Action and Assert
-    expect(() => new NewThread(payload)).toThrowError(
+    expect(() => new NewThread(payload)).toThrow(
         'NEW_THREAD.TITLE_LIMIT_CHAR',
     );
   });

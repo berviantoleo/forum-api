@@ -41,7 +41,7 @@ describe('AddCommentUseCase', () => {
 
     // Assert
     expect(createdComment).toStrictEqual(expectedNewComment);
-    expect(mockThreadRepository.verifyThreadExist).toBeCalledWith(useCasePayload.threadId);
-    expect(mockCommentRepository.addComment).toBeCalledWith(new NewComment(useCasePayload));
+    expect(mockThreadRepository.verifyThreadExist).toHaveBeenCalledWith(useCasePayload.threadId);
+    expect(mockCommentRepository.addComment).toHaveBeenCalledWith(new NewComment(useCasePayload));
   });
 });

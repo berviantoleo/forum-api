@@ -35,11 +35,11 @@ describe('LikeCommentUseCase', () => {
     await likeCommentUse.execute(useCasePayload);
 
     // Assert
-    expect(mockThreadRepository.verifyThreadExist).toBeCalledWith(useCasePayload.threadId);
-    expect(mockCommentRepository.verifyCommentExist).toBeCalledWith(useCasePayload.commentId);
-    expect(mockCommentRepository.isAlreadyLiked).toBeCalledWith(useCasePayload.commentId, useCasePayload.userId);
-    expect(mockCommentRepository.likeComment).toBeCalledWith(useCasePayload.commentId, useCasePayload.userId);
-    expect(mockCommentRepository.unlikeComment).not.toBeCalled();
+    expect(mockThreadRepository.verifyThreadExist).toHaveBeenCalledWith(useCasePayload.threadId);
+    expect(mockCommentRepository.verifyCommentExist).toHaveBeenCalledWith(useCasePayload.commentId);
+    expect(mockCommentRepository.isAlreadyLiked).toHaveBeenCalledWith(useCasePayload.commentId, useCasePayload.userId);
+    expect(mockCommentRepository.likeComment).toHaveBeenCalledWith(useCasePayload.commentId, useCasePayload.userId);
+    expect(mockCommentRepository.unlikeComment).not.toHaveBeenCalled();
   });
 
   it('should orchestrating the unlike action correctly', async () => {
@@ -71,10 +71,10 @@ describe('LikeCommentUseCase', () => {
     await likeCommentUse.execute(useCasePayload);
 
     // Assert
-    expect(mockThreadRepository.verifyThreadExist).toBeCalledWith(useCasePayload.threadId);
-    expect(mockCommentRepository.verifyCommentExist).toBeCalledWith(useCasePayload.commentId);
-    expect(mockCommentRepository.isAlreadyLiked).toBeCalledWith(useCasePayload.commentId, useCasePayload.userId);
-    expect(mockCommentRepository.unlikeComment).toBeCalledWith(useCasePayload.commentId, useCasePayload.userId);
-    expect(mockCommentRepository.likeComment).not.toBeCalled();
+    expect(mockThreadRepository.verifyThreadExist).toHaveBeenCalledWith(useCasePayload.threadId);
+    expect(mockCommentRepository.verifyCommentExist).toHaveBeenCalledWith(useCasePayload.commentId);
+    expect(mockCommentRepository.isAlreadyLiked).toHaveBeenCalledWith(useCasePayload.commentId, useCasePayload.userId);
+    expect(mockCommentRepository.unlikeComment).toHaveBeenCalledWith(useCasePayload.commentId, useCasePayload.userId);
+    expect(mockCommentRepository.likeComment).not.toHaveBeenCalled();
   });
 });
