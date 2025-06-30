@@ -37,6 +37,6 @@ describe('AddThreadUseCase', () => {
 
     // Assert
     expect(createdThread).toStrictEqual(expectedNewThread);
-    expect(mockThreadRepository.addThread).toBeCalledWith(new NewThread(useCasePayload));
+    expect(mockThreadRepository.addThread).toHaveBeenCalledWith(new NewThread(useCasePayload));
   });
 });
