@@ -11,7 +11,7 @@ describe('RefreshAuthenticationUseCase', () => {
     // Action & Assert
     await expect(refreshAuthenticationUseCase.execute(useCasePayload))
         .rejects
-        .toThrowError('REFRESH_AUTHENTICATION_USE_CASE.NOT_CONTAIN_REFRESH_TOKEN');
+        .toThrow('REFRESH_AUTHENTICATION_USE_CASE.NOT_CONTAIN_REFRESH_TOKEN');
   });
 
   it('should throw error if refresh token not string', async () => {
@@ -24,7 +24,7 @@ describe('RefreshAuthenticationUseCase', () => {
     // Action & Assert
     await expect(refreshAuthenticationUseCase.execute(useCasePayload))
         .rejects
-        .toThrowError('REFRESH_AUTHENTICATION_USE_CASE.PAYLOAD_NOT_MEET_DATA_TYPE_SPECIFICATION');
+        .toThrow('REFRESH_AUTHENTICATION_USE_CASE.PAYLOAD_NOT_MEET_DATA_TYPE_SPECIFICATION');
   });
 
   it('should orchestrating the refresh authentication action correctly', async () => {
