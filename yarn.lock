@@ -746,10 +746,10 @@
     "@hapi/cryptiles" "^6.0.1"
     "@hapi/hoek" "^11.0.2"
 
-"@hapi/jwt@^3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@hapi/jwt/-/jwt-3.2.0.tgz#1d4aaf7c8821b99437061733224604e6c36dbf42"
-  integrity sha512-2EU5zdr0petG63J2RHiagGByA1Qr6qzxMmrJJ3/0cm78be1Lq4vi038YgKJvbBSxSboIp5SWGZdYB6+CJlqEoQ==
+"@hapi/jwt@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@hapi/jwt/-/jwt-3.2.1.tgz#c0d0f48eb700eb1b20909490468986c0be30b0c8"
+  integrity sha512-xIrxqTFPj85XGLFFTKmN2gs3TkTwOnICwbJP2VgpvAtCh+IcG++2uNVO9UZeCTkLGHw2CdTxB9VEmKpp3uTbwQ==
   dependencies:
     "@hapi/b64" "^6.0.0"
     "@hapi/boom" "^10.0.0"
