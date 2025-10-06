@@ -27,7 +27,7 @@
     "@hapi/hapi": "^21.4.3",
     "@hapi/jwt": "^3.2.1",
     "bcrypt": "^6.0.0",
-    "dotenv": "^17.2.2",
+    "dotenv": "^17.2.3",
     "instances-container": "^2.0.6",
     "pg": "^8.16.3",
     "uuid": "^13.0.0"
