@@ -41,10 +41,10 @@ class ThreadsHandler {
   /**
    * Get Thread by Id Handler
    * @param {*} request Hapi Request
-   * @param {*} h Hapi Response Toolkit
+   * @param {*} _h Hapi Response Toolkit
    * @return {*} Hapi Response
    */
-  async getThreadbyIdHandler(request, h) {
+  async getThreadbyIdHandler(request, _h) {
     const {threadId} = request.params;
     const getThreadByIdUseCase = this._container.getInstance(GetThreadByIdUseCase.name);
     const thread = await getThreadByIdUseCase.execute({threadId});

@@ -4,94 +4,94 @@
 class CommentRepository {
   /**
    * Add New Comment
-   * @param {*} newComment NewComment Object
+   * @param {*} _newComment NewComment Object
    */
-  async addComment(newComment) {
+  async addComment(_newComment) {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
    * Add New Reply
-   * @param {*} newReply NewReply Object
+   * @param {*} _newReply NewReply Object
    */
-  async addReply(newReply) {
+  async addReply(_newReply) {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
    * GetComment by Id
-   * @param {string} id Comment Id
+   * @param {string} _id Comment Id
    */
-  async getCommentById(id) {
+  async getCommentById(_id) {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
    * Get Comment by ThreadId
-   * @param {string} threadId thread id
+   * @param {string} _threadId thread id
    */
-  async getCommentsByThreadId(threadId) {
+  async getCommentsByThreadId(_threadId) {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
    * Get replies
-   * @param {string} threadId threadId
-   * @param {string} commentId commentId
+   * @param {string} _threadId threadId
+   * @param {string} _commentId commentId
    * @return {*} All replies
    */
-  async getReplies(threadId, commentId) {
+  async getReplies(_threadId, _commentId) {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
    * veryCommentExist by Id
-   * @param {string} id Comment Id
+   * @param {string} _id Comment Id
    */
-  async verifyCommentExist(id) {
+  async verifyCommentExist(_id) {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
    * isAlreadyLiked by Id
-   * @param {string} id Comment Id
-   * @param {string} userId User Id
+   * @param {string} _id Comment Id
+   * @param {string} _userId User Id
    */
-  async isAlreadyLiked(id, userId) {
+  async isAlreadyLiked(_id, _userId) {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
    * unlikeComment by Id
-   * @param {string} id Comment Id
-   * @param {string} userId User Id
+   * @param {string} _id Comment Id
+   * @param {string} _userId User Id
    */
-  async unlikeComment(id, userId) {
+  async unlikeComment(_id, _userId) {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
    * likeComment by Id
-   * @param {string} id Comment Id
-   * @param {string} userId User Id
+   * @param {string} _id Comment Id
+   * @param {string} _userId User Id
    */
-  async likeComment(id, userId) {
+  async likeComment(_id, _userId) {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
    * countLikes by Id
-   * @param {string} id Comment Id
+   * @param {string} _id Comment Id
    */
-  async countLikes(id) {
+  async countLikes(_id) {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
    * Delete Comment by Id
-   * @param {string} id Id
+   * @param {string} _id Id
    */
-  async deleteComment(id) {
+  async deleteComment(_id) {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 }

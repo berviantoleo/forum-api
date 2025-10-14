@@ -44,10 +44,10 @@ class CommentsHandler {
   /**
    * Delete Comment Handler
    * @param {*} request Hapi Request
-   * @param {*} h Hapi Response Toolkit
+   * @param {*} _h Hapi Response Toolkit
    * @return {*} Hapi Response
    */
-  async deleteCommentHandler(request, h) {
+  async deleteCommentHandler(request, _h) {
     const {id: userId} = request.auth.credentials;
     const {threadId, commentId} = request.params;
     const deleteCommentUseCase = this._container.getInstance(DeleteCommentUseCase.name);
@@ -62,10 +62,10 @@ class CommentsHandler {
   /**
    * Like Comment Handler
    * @param {*} request Hapi Request
-   * @param {*} h Hapi Response Toolkit
+   * @param {*} _h Hapi Response Toolkit
    * @return {*} Hapi Response
    */
-  async likeCommentHandler(request, h) {
+  async likeCommentHandler(request, _h) {
     const {id: userId} = request.auth.credentials;
     const {threadId, commentId} = request.params;
     const likeCommentUseCase = this._container.getInstance(LikeCommentUseCase.name);

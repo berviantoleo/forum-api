@@ -43,10 +43,10 @@ class RepliesHandler {
   /**
    * Delete Reply Handler
    * @param {*} request Hapi Request
-   * @param {*} h Hapi Response Toolkit
+   * @param {*} _h Hapi Response Toolkit
    * @return {*} Hapi Response
    */
-  async deleteReplyHandler(request, h) {
+  async deleteReplyHandler(request, _h) {
     const {id: userId} = request.auth.credentials;
     const {threadId, commentId, replyId} = request.params;
     const deleteReplyUseCase = this._container.getInstance(DeleteReplyUseCase.name);

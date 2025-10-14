@@ -4,25 +4,25 @@
 class ThreadRepository {
   /**
      * Add New Thread
-     * @param {*} newThread NewThread Object
+     * @param {*} _newThread NewThread Object
      */
-  async addThread(newThread) {
+  async addThread(_newThread) {
     throw new Error('THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
      * Get Thread by Id
-     * @param {string} id Id
+     * @param {string} _id Id
      */
-  async getThreadById(id) {
+  async getThreadById(_id) {
     throw new Error('THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
    * Verify if thread exists
-   * @param {string} threadId Thread Id
+   * @param {string} _threadId Thread Id
    */
-  async verifyThreadExist(threadId) {
+  async verifyThreadExist(_threadId) {
     throw new Error('THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 }

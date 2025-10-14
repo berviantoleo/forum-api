@@ -4,25 +4,25 @@
 class AuthenticationTokenManager {
   /**
    * Create Refresh Token
-   * @param {*} payload Payload
+   * @param {*} _payload Payload
    */
-  async createRefreshToken(payload) {
+  async createRefreshToken(_payload) {
     throw new Error('AUTHENTICATION_TOKEN_MANAGER.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
    * Create Access Token
-   * @param {*} payload Payload
+   * @param {*} _payload Payload
    */
-  async createAccessToken(payload) {
+  async createAccessToken(_payload) {
     throw new Error('AUTHENTICATION_TOKEN_MANAGER.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
    * Verify Refresh Token
-   * @param {*} token Token
+   * @param {*} _token Token
    */
-  async verifyRefreshToken(token) {
+  async verifyRefreshToken(_token) {
     throw new Error('AUTHENTICATION_TOKEN_MANAGER.METHOD_NOT_IMPLEMENTED');
   }
 

@@ -4,25 +4,25 @@
 class AuthenticationRepository {
   /**
    * Add New Token to database
-   * @param {*} token auth token
+   * @param {*} _token auth token
    */
-  async addToken(token) {
+  async addToken(_token) {
     throw new Error('AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
    * Check auth token
-   * @param {*} token Token
+   * @param {*} _token Token
    */
-  async checkAvailabilityToken(token) {
+  async checkAvailabilityToken(_token) {
     throw new Error('AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
   /**
    * Delete token
-   * @param {*} token token
+   * @param {*} _token token
    */
-  async deleteToken(token) {
+  async deleteToken(_token) {
     throw new Error('AUTHENTICATION_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 }
