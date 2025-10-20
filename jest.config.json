@@ -4,8 +4,5 @@
         "!**/node_modules/**",
         "!**/vendor/**",
         "!src/app.js"
-    ],
-    "transformIgnorePatterns": [
-        "node_modules/(?!(uuid)/)"
     ]
 }
