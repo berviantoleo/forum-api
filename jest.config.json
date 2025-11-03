@@ -1,8 +1,0 @@
-{
-    "collectCoverageFrom": [
-        "src/**/*.{js,jsx}",
-        "!**/node_modules/**",
-        "!**/vendor/**",
-        "!src/app.js"
-    ]
-}
