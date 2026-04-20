@@ -30,7 +30,7 @@
     "dotenv": "^17.4.2",
     "instances-container": "^2.0.6",
     "pg": "^8.20.0",
-    "uuid": "^13.0.0"
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
