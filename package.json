@@ -29,7 +29,7 @@
     "bcrypt": "^6.0.0",
     "dotenv": "^18.0.3",
     "instances-container": "^2.0.6",
-    "pg": "^8.23.0",
+    "pg": "^8.23.1",
     "uuid": "^14.0.2"
   },
   "devDependencies": {
